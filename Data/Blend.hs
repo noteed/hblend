@@ -235,15 +235,18 @@ showSDNAAsHs sdna =
 
 showSDNAAsSDNA :: SDNA -> String
 showSDNAAsSDNA sdna =
+  "sdna :: SDNA\n" ++
   "sdna =\n  [ s" ++ concat (intersperse "\n  , s" $ map (BC.unpack . fst) sdna) ++ "\n  ]"
 
 showBlockParser :: SDNA -> String
 showBlockParser sdna =
+  "readBlend :: FilePath -> IO [(Integer,Block)]\n" ++
   "readBlend f = do\n" ++
   "  s <- LB.readFile f\n" ++
   "  return $ runGet (do h <- getBHeader\n" ++
   "                      bs <- parseBlocks h\n" ++
   "                      return bs) s\n" ++
+  "parseBlocks :: BHeader -> Get [(Integer,Block)]\n" ++
   "parseBlocks h = do\n" ++
   "  code <- getByteString 4\n" ++
   "  size <- fmap fromIntegral getWord32le\n" ++
@@ -256,6 +259,7 @@ showBlockParser sdna =
   "    _ -> do b <- parseBlock h size addr idx count\n" ++
   "            bs <- parseBlocks h\n" ++
   "            return (b : bs)\n" ++
+  "parseBlock :: BHeader -> Int -> Integer -> Int -> Int -> Get (Integer,Block)\n" ++
   "parseBlock h size addr idx count =\n" ++
   "  if structSize h (sdna !! idx) * count /= size\n" ++
   "  then do\n" ++
@@ -296,6 +300,7 @@ showStructAsHs (n, fs) =
 
 showStructAsStruct :: Struct -> String
 showStructAsStruct (n, fs) =
+  "s" ++ BC.unpack n ++ ":: Struct\n" ++
   "s" ++ BC.unpack n ++ " = (" ++ "\"" ++ BC.unpack n ++ "\",\n"
   ++ "  [ " ++
   concat (intersperse "  , " $ map showFieldAsField fs)
@@ -311,6 +316,7 @@ showStructAsHtml i (n, fs) =
 
 showStructParser :: Struct -> String
 showStructParser (n, fs) =
+  "get" ++ n' ++ " :: BHeader -> Get " ++ n' ++ "\n" ++
   "get" ++ n' ++ " h = do\n  " ++
   concat (intersperse "\n  "  f') ++
   "\n  return $ " ++ n'  ++ concatMap (\i -> " _" ++ show i) [1..length fs]

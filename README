@@ -2,3 +2,7 @@
 - Haddock documention should be written.
 - Type signatures in the generated code should be generated
   (goal of no warning at compilation, even for generated code).
+  There is a warning for import Data.ByteString (ByteString).
+  The import is need so I don't understand it.
+  There are warning for 'h' not used. To suppress them, code
+  know if a structure contains pointers is necessary.
