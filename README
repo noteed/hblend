@@ -1,0 +1,4 @@
+- The top of Data.Blend has some explanation.
+- Haddock documention should be written.
+- Type signatures in the generated code should be generated
+  (goal of no warning at compilation, even for generated code).

@@ -1,0 +1,25 @@
+name:                hblend
+version:             0.0.0
+Cabal-Version:       >= 1.2
+synopsis:            Haskell package to parse Blender's .blend file format
+description:         Haskell package to parse Blender's .blend file format
+category:            Data
+license:             BSD3
+license-file:        LICENSE
+author:              Vo Minh Thu
+maintainer:          noteed@gmail.com
+build-type:          Simple
+
+executable hblend
+  main-is:             HBlend.hs
+  build-depends:       base, binary, bytestring
+  ghc-options:         -Wall
+                       -O2
+
+library
+  build-depends:       base, binary, bytestring
+  ghc-options:         -Wall
+                       -O2
+  exposed-modules:     Data.Blend,
+                       Data.Blend.B245
+
