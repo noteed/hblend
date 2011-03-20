@@ -17,7 +17,6 @@ executable hblend
                        bytestring,
                        cmdargs >= 0.6
   ghc-options:         -Wall
-                       -O2
 
 library
   build-depends:       base, binary, bytestring
