@@ -12,6 +12,9 @@ import qualified Data.ByteString.Char8 as BC
 import Control.Monad ((<=<))
 
 import Data.Blend
+import Data.Blend.Types
+import Data.Blend.Html (showStructAsHtml)
+{-
   ( BBlend(..)
   , readBHeader, readBBlend
   , blendHeader, blendSdna
@@ -21,7 +24,7 @@ import Data.Blend
   , showStructAsHs, showStructAsHtml, showStructAsStruct, showStructParser
   , showBlockParser
   )
-
+-}
 versionString :: String
 versionString =
   "hblend " ++ showVersion version ++ " Copyright (c) 2009-2011 Vo Minh Thu."
@@ -120,13 +123,15 @@ dumpCode blend = do
   putStrLn "import Data.Binary"
   putStrLn "import Data.Binary.Get (getByteString, getWord32le, runGet)"
   putStrLn "import Control.Monad (replicateM)"
-  putStrLn "import Data.Blend hiding (Block)"
-  mapM_ (putStrLn . showStructAsStruct) sdna
+  putStrLn "import Data.Blend"
+  putStrLn "import Data.Blend.Types hiding (Block)"
+  putStrLn "import Data.Blend.Parser\n"
+  mapM_ (putStrLn . showStructAsStruct) sdna -- TODO in SDNA
   putStrLn $ showSDNAAsSDNA sdna
-  mapM_ (putStrLn . showStructAsHs) sdna
-  mapM_ (putStrLn . showStructParser) sdna
-  putStrLn $ showSDNAAsHs sdna
-  putStrLn $ showBlockParser sdna
+  mapM_ (putStrLn . showStructAsHs) sdna     -- TODO in Types
+  putStrLn $ showSDNAAsHs sdna               -- TODO in Types
+  mapM_ (putStrLn . showStructParser) sdna   -- TODO in Parser
+  putStrLn $ showBlockParser sdna            -- TODO in Parser
 
 dumpHtml :: BBlend -> IO ()
 dumpHtml blend = do

@@ -12,7 +12,7 @@ build-type:          Simple
 
 executable hblend
   main-is:             HBlend.hs
-  build-depends:       base,
+  build-depends:       base == 4.*,
                        binary,
                        bytestring,
                        cmdargs >= 0.6
