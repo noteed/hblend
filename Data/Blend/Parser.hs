@@ -7,6 +7,7 @@ import Foreign.Ptr (castPtr)
 import Foreign.Marshal.Utils (with)
 import Foreign.Storable (peek)
 import System.IO.Unsafe (unsafePerformIO)
+import Control.Applicative ((<$>))
 
 import qualified Data.ByteString.Lazy as LB
 import qualified Data.ByteString.Char8 as BC
@@ -16,13 +17,14 @@ import Data.Binary
 import Data.Binary.Get
   ( bytesRead, getByteString
   , getWord64be, getWord32be, getWord16be
-  ,  getWord64le, getWord32le, getWord16le
+  , getWord64le, getWord32le, getWord16le
   , skip, runGet
   )
 
 import Control.Monad (when, replicateM)
 
 import Data.Blend.Types
+import Debug.Trace (trace)
 
 getBHeader :: Get BHeader
 getBHeader = do
@@ -49,46 +51,46 @@ getBHeader = do
 getBlock :: BHeader -> Get Block
 getBlock h = do
   code <- getByteString 4
-  size <- fmap fromIntegral getWord32le
+  size <- fromIntegral <$> getWord32 h
   addr <- getAddress h
-  idx <- fmap fromIntegral getWord32le
-  count <- fmap fromIntegral getWord32le
+  idx <- fromIntegral <$> getWord32 h
+  count <- fromIntegral <$> getWord32 h
   dat <- getByteString size
   return $ Block code addr idx count dat
 
-getSDNA :: Get SDNA
-getSDNA = do
+getSDNA :: BHeader -> Get SDNA
+getSDNA h = do
   skipAndCheck "SDNA"
   skipAndCheck "NAME"
-  nc <- fmap fromIntegral getWord32le
+  nc <- fromIntegral <$> getWord32 h
   ns <- getNulTerminatedStrings (nc::Integer)
   align 4
   skipAndCheck "TYPE"
-  tc <- fmap fromIntegral getWord32le
+  tc <- fromIntegral <$> getWord32 h
   ts <- getNulTerminatedStrings tc
   align 4
   skipAndCheck "TLEN"
   _ <- replicateM tc get :: Get [Int16]
   align 4
   skipAndCheck "STRC"
-  sc <- fmap fromIntegral getWord32le
-  ss <- replicateM sc (getSDNAStruct ns ts)
+  sc <- fromIntegral <$> getWord32 h
+  ss <- replicateM sc (getSDNAStruct h ns ts)
   return (flatten ss)
 
-getTypeAndName :: [ByteString] -> [ByteString] -> Get (ByteString,ByteString)
-getTypeAndName ns ts = do
-  a <- fmap ((ts !!) . fromIntegral) getWord16le
-  b <- fmap ((ns !!) . fromIntegral) getWord16le
+getTypeAndName :: BHeader -> [ByteString] -> [ByteString] -> Get (ByteString,ByteString)
+getTypeAndName h ns ts = do
+  a <- ((ts !!) . fromIntegral) <$> getWord16 h
+  b <- ((ns !!) . fromIntegral) <$> getWord16 h
   return (a,b)
 
 -- Parses the name and the fields of a structure as ByteStrings
 -- (not as Int16 indices). The list of names and types are passed
 -- as arguments to make the lookup of the ByteStrings possible.
-getSDNAStruct :: [ByteString] -> [ByteString] -> Get SDNAStruct
-getSDNAStruct ns ts = do
-  st <- fmap ((ts !!) . fromIntegral) getWord16le
-  fc <- fmap fromIntegral getWord16le
-  fs <- replicateM fc (getTypeAndName ns ts)
+getSDNAStruct :: BHeader -> [ByteString] -> [ByteString] -> Get SDNAStruct
+getSDNAStruct h ns ts = do
+  st <- ((ts !!) . fromIntegral) <$> getWord16 h
+  fc <- fromIntegral <$> getWord16 h
+  fs <- replicateM fc (getTypeAndName h ns ts)
   return (st, fs)
 
 -- Given flattened Structs, flatten another struct.
@@ -156,7 +158,7 @@ getBlocks bf = do
   b <- getBlock (blendHeader bf)
   case BC.unpack (blckCode b) of
     "DNA1" -> do bf' <- getBlocks bf
-                 let sdna = runGet getSDNA $ LB.fromChunks [blckData b]
+                 let sdna = runGet (getSDNA $ blendHeader bf) $ LB.fromChunks [blckData b]
                  return $ bf' { blendSdna = sdna }
     "ENDB" -> return bf
     _ -> do bf' <- getBlocks bf
@@ -173,84 +175,72 @@ getBBlend = do
 ----------------------------------------------------------------------
 -- Parsing primitives.
 -- The blend-file header is given in argument to account for
--- the endiannes and the pointer-sizeused to write the file.
+-- the endiannes and the pointer-size used to write the file.
 -- The size of a function pointer is assumed to be the size of
 -- a regular pointer.
 ----------------------------------------------------------------------
 
+getWord16 :: BHeader -> Get Word16
+getWord16 h = case endianness h of
+  LittleEndian -> getWord16le
+  BigEndian -> getWord16be
+
+getWord32 :: BHeader -> Get Word32
+getWord32 h = case endianness h of
+  LittleEndian -> getWord32le
+  BigEndian -> getWord32be
+
+getWord64 :: BHeader -> Get Word64
+getWord64 h = case endianness h of
+  LittleEndian -> getWord64le
+  BigEndian -> getWord64be
+
 -- Returns an address according to the endianness an
 -- pointer size of a given header.
 getAddress :: BHeader -> Get Integer
-getAddress h =
-  case (endianness h, pointerSize h) of
-    (LittleEndian, Pointer32) -> fmap fromIntegral getWord32le
-    (LittleEndian, Pointer64) -> fmap fromIntegral getWord64le
-    (BigEndian, Pointer32) -> fmap fromIntegral getWord32be
-    (BigEndian, Pointer64) -> fmap fromIntegral getWord64be
+getAddress h = case pointerSize h of
+  Pointer32 -> fromIntegral <$> getWord32 h
+  Pointer64 -> fromIntegral <$> getWord64 h
 
 getPointer :: BHeader -> Get Integer
 getPointer = getAddress
 
 getShort :: BHeader -> Get Int16
-getShort h =
-  case endianness h of
-    LittleEndian -> fmap fromIntegral getWord16le
-    BigEndian -> fmap fromIntegral getWord16be
+getShort h = fromIntegral <$> getWord16 h
 
 getUShort :: BHeader -> Get Word16
-getUShort h =
-  case endianness h of
-    LittleEndian -> fmap fromIntegral getWord16le
-    BigEndian -> fmap fromIntegral getWord16be
+getUShort h = fromIntegral <$> getWord16 h
 
 getInt :: BHeader -> Get Int32
-getInt h =
-  case endianness h of
-    LittleEndian -> fmap fromIntegral getWord32le
-    BigEndian -> fmap fromIntegral getWord32be
+getInt h = fromIntegral <$> getWord32 h
 
 getLong :: BHeader -> Get Int64
-getLong h =
-  case endianness h of
-    LittleEndian -> fmap fromIntegral getWord64le
-    BigEndian -> fmap fromIntegral getWord64be
+getLong h = fromIntegral <$> getWord64 h
 
 getULong :: BHeader -> Get Word64
-getULong h =
-  case endianness h of
-    LittleEndian -> fmap fromIntegral getWord64le
-    BigEndian -> fmap fromIntegral getWord64be
+getULong h = fromIntegral <$> getWord64 h
 
 -- Thanks to Judah Jacobson on the Haskell mailing-list for the
 -- Word32/Float and Word64/Double conversions.
 
 getFloat :: BHeader -> Get Float
-getFloat h = fmap coerce (
- case endianness h of
-   LittleEndian -> getWord32le
-   BigEndian -> getWord32be
- )
+getFloat h = coerce <$> getWord32 h
  where
    coerce w = unsafePerformIO $ with w $ \p -> do
                 d <- peek (castPtr p) :: IO CFloat
                 return (realToFrac d :: Float)
 
 getDouble :: BHeader -> Get Double
-getDouble h = fmap coerce (
- case endianness h of
-   LittleEndian -> getWord64le
-   BigEndian -> getWord64be
- )
+getDouble h = coerce <$> getWord64 h
  where
    coerce w = unsafePerformIO $ with w $ \p -> do
                 d <- peek (castPtr p) :: IO CDouble
                 return (realToFrac d :: Double)
 
 skipAddress :: BHeader -> Get ()
-skipAddress h =
-  case pointerSize h of
-    Pointer32 -> skip 4
-    Pointer64 -> skip 8
+skipAddress h = case pointerSize h of
+  Pointer32 -> skip 4
+  Pointer64 -> skip 8
 
 skipAndCheck :: ByteString -> Get ()
 skipAndCheck s = do
