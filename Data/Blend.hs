@@ -146,7 +146,7 @@ data BBlock = BBlock
   , blockData   :: ByteString
   }
 
--- Use is the 'down' pass then converted to BBlock in the
+-- Used in the 'down' pass then converted to BBlock in the
 -- 'up' pass, see getBBlocks.
 data Block = Block
   { -- header part
