@@ -1,41 +1,35 @@
-module Data.Blend.Html where
+{-# Language OverloadedStrings #-}
+module Data.Blend.Html (dumpHtml) where
 
+import qualified Data.ByteString.Lazy as B
 import qualified Data.ByteString.Char8 as BC
-import Data.List (intersperse)
+
+import qualified Text.Blaze.Html5 as H
+import qualified Text.Blaze.Html5.Attributes as A
+import Text.Blaze (Html, (!))
+import Text.Blaze.Renderer.Utf8 (renderHtml)
 
 import Data.Blend.Types
 
--- .blend file header
+dumpHtml :: BBlend -> IO ()
+dumpHtml blend = do
+  let sdna = blendSdna blend
+  (B.putStr . renderHtml) $ do
+    H.docType
+    H.meta ! A.charset "UTF-8"
+    H.title "Blender SDNA structures"
+    mapM_ (uncurry structAsHtml) $ zip [(0::Integer)..] sdna
 
-showStructAsHtml :: (Integral i) => i -> Struct -> String
-showStructAsHtml i (n, fs) =
-  "<div class=\"sdna-structure\"><span class=\"sdna-index\">"
-  ++ show i ++ "</span><span class=\"sdna-structure-name\">"
-  ++ " structure " ++ BC.unpack n ++ "</span>\n" ++
-  concat (intersperse "  , "  $ map showFieldAsHtml fs)
-  ++ "</div>\n"
+structAsHtml :: (Integral i) => i -> Struct -> Html
+structAsHtml i (n, fs) =
+  H.div ! A.class_ "sdna-structure" $ do
+    H.span ! A.class_ "sdna-index" $ H.string (show i)
+    H.span ! A.class_ "sdna-structure-name" $ H.string
+      $ "structure " ++ BC.unpack n
+    H.ul $ mapM_ fieldAsHtml fs
 
-showFieldAsHtml :: Field -> String
-showFieldAsHtml (n, t) =
-  "<span class=\"sdna-field\"><span class=\"sdna-field-type\">"
-  ++ showTypeAsHtml t ++ "</span><span class=\"sdna-field-name\">"
-  ++ BC.unpack n ++ "</span></span>\n"
-
-showTypeAsHtml :: Type -> String
-showTypeAsHtml t =
-  case t of 
-    Char -> "char"
-    UChar -> "uchar"
-    Short -> "short"
-    UShort -> "ushort"
-    Int -> "int"
-    Long -> "long"
-    ULong -> "ulong"
-    Float -> "float"
-    Double -> "double"
-    Ref t' -> show t' ++ " *"
-    RefVoid -> "void *"
-    Arr l t' -> show t' ++ " [" ++ show l ++ "]"
-    FunPtr t' -> show t' ++ "(*xxx)()"
-    Compound s -> "struct " ++ BC.unpack (structName s)
-    UnknownCompound n -> "struct " ++ BC.unpack n ++ " (undefined)"
+fieldAsHtml :: Field -> Html
+fieldAsHtml (n, t) = do
+  H.li ! A.class_ "sdna-field" $ do
+    H.span ! A.class_ "sdna-field-type" $ H.string $ show t
+    H.span ! A.class_ "sdna-field-name" $ H.string $ BC.unpack n

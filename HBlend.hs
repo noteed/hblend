@@ -16,7 +16,7 @@ import Control.Monad ((<=<))
 
 import Data.Blend
 import Data.Blend.Types
-import Data.Blend.Html (showStructAsHtml)
+import Data.Blend.Html (dumpHtml)
 {-
   ( BBlend(..)
   , readBHeader, readBBlend
@@ -174,10 +174,3 @@ dumpCode blend = do
       \import Data.Blend.B" ++ v ++ ".SDNA\n\
       \import Data.Blend.B" ++ v ++ ".Types\n\
       \import Data.Blend.B" ++ v ++ ".Parser"
-
-dumpHtml :: BBlend -> IO ()
-dumpHtml blend = do
-  let sdna = blendSdna blend
-  putStrLn "<html><head><title>SDNA structures</title></head><body>\n"
-  mapM_ putStrLn $ zipWith showStructAsHtml [(0::Integer)..] sdna
-  putStrLn "</body></html>\n"

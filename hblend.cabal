@@ -17,7 +17,8 @@ executable hblend
                        bytestring,
                        cmdargs >= 0.6,
                        directory,
-                       filepath
+                       filepath,
+                       blaze-html == 0.3.*
   ghc-options:         -Wall
 
 library
