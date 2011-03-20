@@ -576,6 +576,12 @@ readBBlend f = do
   s <- LB.readFile f
   return $ runGet getBBlend s
 
+-- Reads just a blend-file header.
+readBHeader :: FilePath -> IO BHeader
+readBHeader f = do
+  s <- LB.readFile f
+  return $ runGet getBHeader s
+
 -- Convenience functions 
 
 lookupStruct :: BBlend -> String -> Maybe Struct
