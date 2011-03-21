@@ -24,7 +24,6 @@ import Data.Binary.Get
 import Control.Monad (when, replicateM)
 
 import Data.Blend.Types
-import Debug.Trace (trace)
 
 getBHeader :: Get BHeader
 getBHeader = do
@@ -127,8 +126,9 @@ flattenField ss (t,n) = (n',t''')
                 (1, [l,m]) -> Arr m (Arr l (Ref t'))
                 _ -> error "Unexpected (type,name)"
         -- the name can be (*xxx)()
-        t''' = if BC.head (name n) == '(' then FunPtr t'' else t''
-        n' = if BC.head (name n) == '(' then BC.takeWhile (/= ')') (BC.drop 2 n) else name n
+        (n', t''') = if not (BC.null $ name n) && BC.head (name n) == '('
+          then (BC.takeWhile (/= ')') (BC.drop 2 n) , FunPtr t'')
+          else (name n, t'')
 
 lengths :: ByteString -> [Int]
 lengths s =
@@ -157,10 +157,9 @@ getBlocks :: BBlend -> Get BBlend
 getBlocks bf = do
   b <- getBlock (blendHeader bf)
   case BC.unpack (blckCode b) of
-    "DNA1" -> do bf' <- getBlocks bf
+    "DNA1" -> do skipAndCheck "ENDB"
                  let sdna = runGet (getSDNA $ blendHeader bf) $ LB.fromChunks [blckData b]
-                 return $ bf' { blendSdna = sdna }
-    "ENDB" -> return bf
+                 return $ bf { blendSdna = sdna }
     _ -> do bf' <- getBlocks bf
             let (Block c a i n d) = b
                 sdna = blendSdna bf'
@@ -250,7 +249,7 @@ skipAndCheck s = do
 
 -- Parses a null-terminated string (doesn't return the null byte).
 getNulTerminatedString :: Get ByteString
-getNulTerminatedString = fmap pack go
+getNulTerminatedString = pack <$> go
   where go :: Get [Word8]
         go = do w <- get
                 if w == 0
@@ -259,7 +258,7 @@ getNulTerminatedString = fmap pack go
                           return (w : ws)
 
 -- Parses n null-terminated strings.
-getNulTerminatedStrings :: (Integral a) => a -> Get [ByteString]
+getNulTerminatedStrings :: Integral a => a -> Get [ByteString]
 getNulTerminatedStrings n =
   replicateM (fromIntegral n) getNulTerminatedString
 
