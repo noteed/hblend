@@ -25,5 +25,8 @@ library
   build-depends:       base, binary, bytestring
   ghc-options:         -Wall
   exposed-modules:     Data.Blend,
-                       Data.Blend.B245
+                       Data.Blend.B245,
+                       Data.Blend.Html,
+                       Data.Blend.Parser,
+                       Data.Blend.Types
 

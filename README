@@ -6,3 +6,6 @@
   The import is needed so I don't understand it.
   There are warnings for 'h' not used. To suppress them, code
   to know if a structure contains pointers is necessary.
+- The generated code is specific to some endianness and pointer size.
+- Nothing is done yet to share the data structures from different
+  Blender version.
