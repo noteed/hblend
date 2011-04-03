@@ -20,49 +20,58 @@ getLink h = do
   _1 <- getPointer h {- struct Link * -}
   _2 <- getPointer h {- struct Link * -}
   return $ Link _1 _2
+
 getListBase :: BHeader -> Get ListBase
 getListBase h = do
   _1 <- getPointer h {- void * * -}
   _2 <- getPointer h {- void * * -}
   return $ ListBase _1 _2
+
 getVec2s :: BHeader -> Get Vec2s
 getVec2s h = do
   _1 <- getShort h {- short -}
   _2 <- getShort h {- short -}
   return $ Vec2s _1 _2
+
 getVec2i :: BHeader -> Get Vec2i
 getVec2i h = do
   _1 <- getInt h {- int -}
   _2 <- getInt h {- int -}
   return $ Vec2i _1 _2
+
 getVec2f :: BHeader -> Get Vec2f
 getVec2f h = do
   _1 <- getFloat h {- float -}
   _2 <- getFloat h {- float -}
   return $ Vec2f _1 _2
+
 getVec2d :: BHeader -> Get Vec2d
 getVec2d h = do
   _1 <- getDouble h {- double -}
   _2 <- getDouble h {- double -}
   return $ Vec2d _1 _2
+
 getVec3i :: BHeader -> Get Vec3i
 getVec3i h = do
   _1 <- getInt h {- int -}
   _2 <- getInt h {- int -}
   _3 <- getInt h {- int -}
   return $ Vec3i _1 _2 _3
+
 getVec3f :: BHeader -> Get Vec3f
 getVec3f h = do
   _1 <- getFloat h {- float -}
   _2 <- getFloat h {- float -}
   _3 <- getFloat h {- float -}
   return $ Vec3f _1 _2 _3
+
 getVec3d :: BHeader -> Get Vec3d
 getVec3d h = do
   _1 <- getDouble h {- double -}
   _2 <- getDouble h {- double -}
   _3 <- getDouble h {- double -}
   return $ Vec3d _1 _2 _3
+
 getVec4i :: BHeader -> Get Vec4i
 getVec4i h = do
   _1 <- getInt h {- int -}
@@ -70,6 +79,7 @@ getVec4i h = do
   _3 <- getInt h {- int -}
   _4 <- getInt h {- int -}
   return $ Vec4i _1 _2 _3 _4
+
 getVec4f :: BHeader -> Get Vec4f
 getVec4f h = do
   _1 <- getFloat h {- float -}
@@ -77,6 +87,7 @@ getVec4f h = do
   _3 <- getFloat h {- float -}
   _4 <- getFloat h {- float -}
   return $ Vec4f _1 _2 _3 _4
+
 getVec4d :: BHeader -> Get Vec4d
 getVec4d h = do
   _1 <- getDouble h {- double -}
@@ -84,6 +95,7 @@ getVec4d h = do
   _3 <- getDouble h {- double -}
   _4 <- getDouble h {- double -}
   return $ Vec4d _1 _2 _3 _4
+
 getRcti :: BHeader -> Get Rcti
 getRcti h = do
   _1 <- getInt h {- int -}
@@ -91,6 +103,7 @@ getRcti h = do
   _3 <- getInt h {- int -}
   _4 <- getInt h {- int -}
   return $ Rcti _1 _2 _3 _4
+
 getRctf :: BHeader -> Get Rctf
 getRctf h = do
   _1 <- getFloat h {- float -}
@@ -98,6 +111,7 @@ getRctf h = do
   _3 <- getFloat h {- float -}
   _4 <- getFloat h {- float -}
   return $ Rctf _1 _2 _3 _4
+
 getIDPropertyData :: BHeader -> Get IDPropertyData
 getIDPropertyData h = do
   _1 <- getPointer h {- void * * -}
@@ -105,6 +119,7 @@ getIDPropertyData h = do
   _3 <- getInt h {- int -}
   _4 <- getInt h {- int -}
   return $ IDPropertyData _1 _2 _3 _4
+
 getIDProperty :: BHeader -> Get IDProperty
 getIDProperty h = do
   _1 <- getPointer h {- struct IDProperty * -}
@@ -118,6 +133,7 @@ getIDProperty h = do
   _9 <- getInt h {- int -}
   _10 <- getInt h {- int -}
   return $ IDProperty _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getID :: BHeader -> Get ID
 getID h = do
   _1 <- getPointer h {- void * * -}
@@ -130,6 +146,7 @@ getID h = do
   _8 <- getInt h {- int -}
   _9 <- getPointer h {- struct IDProperty * -}
   return $ ID _1 _2 _3 _4 _5 _6 _7 _8 _9
+
 getLibrary :: BHeader -> Get Library
 getLibrary h = do
   _1 <- getID h {- struct ID -}
@@ -141,6 +158,7 @@ getLibrary h = do
   _7 <- getInt h {- int -}
   _8 <- getPointer h {- struct Library * -}
   return $ Library _1 _2 _3 _4 _5 _6 _7 _8
+
 getIpo :: BHeader -> Get Ipo
 getIpo h = do
   _1 <- getID h {- struct ID -}
@@ -150,6 +168,7 @@ getIpo h = do
   _5 <- getShort h {- short -}
   _6 <- getInt h {- int -}
   return $ Ipo _1 _2 _3 _4 _5 _6
+
 getKeyBlock :: BHeader -> Get KeyBlock
 getKeyBlock h = do
   _1 <- getPointer h {- struct KeyBlock * -}
@@ -166,6 +185,7 @@ getKeyBlock h = do
   _12 <- getFloat h {- float -}
   _13 <- getFloat h {- float -}
   return $ KeyBlock _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getKey :: BHeader -> Get Key
 getKey h = do
   _1 <- getID h {- struct ID -}
@@ -181,6 +201,7 @@ getKey h = do
   _11 <- getShort h {- short -}
   _12 <- getShort h {- short -}
   return $ Key _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12
+
 getScriptLink :: BHeader -> Get ScriptLink
 getScriptLink h = do
   _1 <- getPointer h {- struct ID * * -}
@@ -189,6 +210,7 @@ getScriptLink h = do
   _4 <- getShort h {- short -}
   _5 <- getInt h {- int -}
   return $ ScriptLink _1 _2 _3 _4 _5
+
 getTextLine :: BHeader -> Get TextLine
 getTextLine h = do
   _1 <- getPointer h {- struct TextLine * -}
@@ -198,6 +220,7 @@ getTextLine h = do
   _5 <- getInt h {- int -}
   _6 <- getInt h {- int -}
   return $ TextLine _1 _2 _3 _4 _5 _6
+
 getText :: BHeader -> Get Text
 getText h = do
   _1 <- getID h {- struct ID -}
@@ -214,6 +237,7 @@ getText h = do
   _12 <- getInt h {- int -}
   _13 <- getPointer h {- void * * -}
   return $ Text _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getPackedFile :: BHeader -> Get PackedFile
 getPackedFile h = do
   _1 <- getInt h {- int -}
@@ -222,6 +246,7 @@ getPackedFile h = do
   _4 <- getInt h {- int -}
   _5 <- getPointer h {- void * * -}
   return $ PackedFile _1 _2 _3 _4 _5
+
 getCamera :: BHeader -> Get Camera
 getCamera h = do
   _1 <- getID h {- struct ID -}
@@ -244,12 +269,14 @@ getCamera h = do
   _18 <- getPointer h {- struct Ipo * -}
   _19 <- getScriptLink h {- struct ScriptLink -}
   return $ Camera _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19
+
 getPreviewImage :: BHeader -> Get PreviewImage
 getPreviewImage h = do
   _1 <- getInt h {- int -}
   _2 <- getInt h {- int -}
   _3 <- getPointer h {- int * -}
   return $ PreviewImage _1 _2 _3
+
 getImageUser :: BHeader -> Get ImageUser
 getImageUser h = do
   _1 <- getInt h {- int -}
@@ -265,6 +292,7 @@ getImageUser h = do
   _11 <- getShort h {- short -}
   _12 <- getShort h {- short -}
   return $ ImageUser _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12
+
 getImage :: BHeader -> Get Image
 getImage h = do
   _1 <- getID h {- struct ID -}
@@ -297,6 +325,7 @@ getImage h = do
   _28 <- getShort h {- short -}
   _29 <- getPointer h {- void * * -}
   return $ Image _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29
+
 getMTex :: BHeader -> Get MTex
 getMTex h = do
   _1 <- getShort h {- short -}
@@ -325,6 +354,7 @@ getMTex h = do
   _24 <- getFloat h {- float -}
   _25 <- getFloat h {- float -}
   return $ MTex _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25
+
 getPluginTex :: BHeader -> Get PluginTex
 getPluginTex h = do
   _1 <- getByteString 160 {- char[160] -}
@@ -343,6 +373,7 @@ getPluginTex h = do
   _14 <- getInt h {- int -}
   _15 <- getInt h {- int -}
   return $ PluginTex _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15
+
 getCBData :: BHeader -> Get CBData
 getCBData h = do
   _1 <- getFloat h {- float -}
@@ -352,6 +383,7 @@ getCBData h = do
   _5 <- getFloat h {- float -}
   _6 <- getInt h {- int -}
   return $ CBData _1 _2 _3 _4 _5 _6
+
 getColorBand :: BHeader -> Get ColorBand
 getColorBand h = do
   _1 <- getShort h {- short -}
@@ -360,6 +392,7 @@ getColorBand h = do
   _4 <- getShort h {- short -}
   _5 <- replicateM 32 (getCBData h {- struct CBData -}) {- struct CBData[32] -}
   return $ ColorBand _1 _2 _3 _4 _5
+
 getEnvMap :: BHeader -> Get EnvMap
 getEnvMap h = do
   _1 <- getPointer h {- struct Object * -}
@@ -380,6 +413,7 @@ getEnvMap h = do
   _16 <- getShort h {- short -}
   _17 <- getShort h {- short -}
   return $ EnvMap _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17
+
 getTex :: BHeader -> Get Tex
 getTex h = do
   _1 <- getID h {- struct ID -}
@@ -435,6 +469,7 @@ getTex h = do
   _51 <- getPointer h {- struct ColorBand * -}
   _52 <- getPointer h {- struct EnvMap * -}
   return $ Tex _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52
+
 getTexMapping :: BHeader -> Get TexMapping
 getTexMapping h = do
   _1 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
@@ -446,6 +481,7 @@ getTexMapping h = do
   _7 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _8 <- getPointer h {- struct Object * -}
   return $ TexMapping _1 _2 _3 _4 _5 _6 _7 _8
+
 getLamp :: BHeader -> Get Lamp
 getLamp h = do
   _1 <- getID h {- struct ID -}
@@ -501,11 +537,13 @@ getLamp h = do
   _51 <- getPointer h {- struct Ipo * -}
   _52 <- getScriptLink h {- struct ScriptLink -}
   return $ Lamp _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52
+
 getWave :: BHeader -> Get Wave
 getWave h = do
   _1 <- getID h {- struct ID -}
   _2 <- getPointer h {- struct Ipo * -}
   return $ Wave _1 _2
+
 getMaterial :: BHeader -> Get Material
 getMaterial h = do
   _1 <- getID h {- struct ID -}
@@ -621,6 +659,7 @@ getMaterial h = do
   _111 <- getInt h {- int -}
   _112 <- getScriptLink h {- struct ScriptLink -}
   return $ Material _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52 _53 _54 _55 _56 _57 _58 _59 _60 _61 _62 _63 _64 _65 _66 _67 _68 _69 _70 _71 _72 _73 _74 _75 _76 _77 _78 _79 _80 _81 _82 _83 _84 _85 _86 _87 _88 _89 _90 _91 _92 _93 _94 _95 _96 _97 _98 _99 _100 _101 _102 _103 _104 _105 _106 _107 _108 _109 _110 _111 _112
+
 getVFont :: BHeader -> Get VFont
 getVFont h = do
   _1 <- getID h {- struct ID -}
@@ -630,6 +669,7 @@ getVFont h = do
   _5 <- getPointer h {- UnknownCompound VFontData  -}
   _6 <- getPointer h {- struct PackedFile * -}
   return $ VFont _1 _2 _3 _4 _5 _6
+
 getMetaElem :: BHeader -> Get MetaElem
 getMetaElem h = do
   _1 <- getPointer h {- struct MetaElem * -}
@@ -659,6 +699,7 @@ getMetaElem h = do
   _25 <- getPointer h {- float * -}
   _26 <- getPointer h {- float * -}
   return $ MetaElem _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26
+
 getMetaBall :: BHeader -> Get MetaBall
 getMetaBall h = do
   _1 <- getID h {- struct ID -}
@@ -677,6 +718,7 @@ getMetaBall h = do
   _14 <- getFloat h {- float -}
   _15 <- getFloat h {- float -}
   return $ MetaBall _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15
+
 getBezTriple :: BHeader -> Get BezTriple
 getBezTriple h = do
   _1 <- replicateM 3 (replicateM 3 (getFloat h {- float -}) {- float[3] -}) {- float [3][3] -}
@@ -690,6 +732,7 @@ getBezTriple h = do
   _9 <- get {- char -}
   _10 <- get {- char -}
   return $ BezTriple _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBPoint :: BHeader -> Get BPoint
 getBPoint h = do
   _1 <- replicateM 4 (getFloat h {- float -}) {- float[4] -}
@@ -700,6 +743,7 @@ getBPoint h = do
   _6 <- getFloat h {- float -}
   _7 <- getFloat h {- float -}
   return $ BPoint _1 _2 _3 _4 _5 _6 _7
+
 getNurb :: BHeader -> Get Nurb
 getNurb h = do
   _1 <- getPointer h {- struct Nurb * -}
@@ -723,6 +767,7 @@ getNurb h = do
   _19 <- getInt h {- int -}
   _20 <- getInt h {- int -}
   return $ Nurb _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20
+
 getCharInfo :: BHeader -> Get CharInfo
 getCharInfo h = do
   _1 <- getShort h {- short -}
@@ -731,6 +776,7 @@ getCharInfo h = do
   _4 <- get {- char -}
   _5 <- getShort h {- short -}
   return $ CharInfo _1 _2 _3 _4 _5
+
 getTextBox :: BHeader -> Get TextBox
 getTextBox h = do
   _1 <- getFloat h {- float -}
@@ -738,6 +784,7 @@ getTextBox h = do
   _3 <- getFloat h {- float -}
   _4 <- getFloat h {- float -}
   return $ TextBox _1 _2 _3 _4
+
 getCurve :: BHeader -> Get Curve
 getCurve h = do
   _1 <- getID h {- struct ID -}
@@ -798,6 +845,7 @@ getCurve h = do
   _56 <- getPointer h {- struct CharInfo * -}
   _57 <- getCharInfo h {- struct CharInfo -}
   return $ Curve _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52 _53 _54 _55 _56 _57
+
 getIpoDriver :: BHeader -> Get IpoDriver
 getIpoDriver h = do
   _1 <- getPointer h {- struct Object * -}
@@ -807,6 +855,7 @@ getIpoDriver h = do
   _5 <- getShort h {- short -}
   _6 <- getByteString 128 {- char[128] -}
   return $ IpoDriver _1 _2 _3 _4 _5 _6
+
 getIpoCurve :: BHeader -> Get IpoCurve
 getIpoCurve h = do
   _1 <- getPointer h {- struct IpoCurve * -}
@@ -831,6 +880,7 @@ getIpoCurve h = do
   _20 <- getFloat h {- float -}
   _21 <- getPointer h {- struct IpoDriver * -}
   return $ IpoCurve _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21
+
 getMesh :: BHeader -> Get Mesh
 getMesh h = do
   _1 <- getID h {- struct ID -}
@@ -875,6 +925,7 @@ getMesh h = do
   _40 <- getPointer h {- struct PartialVisibility * -}
   _41 <- getPointer h {- void * * -}
   return $ Mesh _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41
+
 getTFace :: BHeader -> Get TFace
 getTFace h = do
   _1 <- getPointer h {- void * * -}
@@ -886,6 +937,7 @@ getTFace h = do
   _7 <- getShort h {- short -}
   _8 <- getShort h {- short -}
   return $ TFace _1 _2 _3 _4 _5 _6 _7 _8
+
 getMFace :: BHeader -> Get MFace
 getMFace h = do
   _1 <- getInt h {- int -}
@@ -897,6 +949,7 @@ getMFace h = do
   _7 <- get {- char -}
   _8 <- get {- char -}
   return $ MFace _1 _2 _3 _4 _5 _6 _7 _8
+
 getMEdge :: BHeader -> Get MEdge
 getMEdge h = do
   _1 <- getInt h {- int -}
@@ -905,17 +958,20 @@ getMEdge h = do
   _4 <- get {- char -}
   _5 <- getShort h {- short -}
   return $ MEdge _1 _2 _3 _4 _5
+
 getMDeformWeight :: BHeader -> Get MDeformWeight
 getMDeformWeight h = do
   _1 <- getInt h {- int -}
   _2 <- getFloat h {- float -}
   return $ MDeformWeight _1 _2
+
 getMDeformVert :: BHeader -> Get MDeformVert
 getMDeformVert h = do
   _1 <- getPointer h {- struct MDeformWeight * -}
   _2 <- getInt h {- int -}
   _3 <- getInt h {- int -}
   return $ MDeformVert _1 _2 _3
+
 getMVert :: BHeader -> Get MVert
 getMVert h = do
   _1 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
@@ -923,6 +979,7 @@ getMVert h = do
   _3 <- get {- char -}
   _4 <- get {- char -}
   return $ MVert _1 _2 _3 _4
+
 getMCol :: BHeader -> Get MCol
 getMCol h = do
   _1 <- get {- char -}
@@ -930,15 +987,18 @@ getMCol h = do
   _3 <- get {- char -}
   _4 <- get {- char -}
   return $ MCol _1 _2 _3 _4
+
 getMSticky :: BHeader -> Get MSticky
 getMSticky h = do
   _1 <- replicateM 2 (getFloat h {- float -}) {- float[2] -}
   return $ MSticky _1
+
 getMSelect :: BHeader -> Get MSelect
 getMSelect h = do
   _1 <- getInt h {- int -}
   _2 <- getInt h {- int -}
   return $ MSelect _1 _2
+
 getMTFace :: BHeader -> Get MTFace
 getMTFace h = do
   _1 <- replicateM 2 (replicateM 4 (getFloat h {- float -}) {- float[4] -}) {- float [4][2] -}
@@ -949,6 +1009,7 @@ getMTFace h = do
   _6 <- getShort h {- short -}
   _7 <- getShort h {- short -}
   return $ MTFace _1 _2 _3 _4 _5 _6 _7
+
 getMultiresCol :: BHeader -> Get MultiresCol
 getMultiresCol h = do
   _1 <- getFloat h {- float -}
@@ -956,10 +1017,12 @@ getMultiresCol h = do
   _3 <- getFloat h {- float -}
   _4 <- getFloat h {- float -}
   return $ MultiresCol _1 _2 _3 _4
+
 getMultiresColFace :: BHeader -> Get MultiresColFace
 getMultiresColFace h = do
   _1 <- replicateM 4 (getMultiresCol h {- struct MultiresCol -}) {- struct MultiresCol[4] -}
   return $ MultiresColFace _1
+
 getMultiresFace :: BHeader -> Get MultiresFace
 getMultiresFace h = do
   _1 <- replicateM 4 (getInt h {- int -}) {- int[4] -}
@@ -969,11 +1032,13 @@ getMultiresFace h = do
   _5 <- get {- char -}
   _6 <- getByteString 2 {- char[2] -}
   return $ MultiresFace _1 _2 _3 _4 _5 _6
+
 getMultiresEdge :: BHeader -> Get MultiresEdge
 getMultiresEdge h = do
   _1 <- replicateM 2 (getInt h {- int -}) {- int[2] -}
   _2 <- getInt h {- int -}
   return $ MultiresEdge _1 _2
+
 getMultiresLevel :: BHeader -> Get MultiresLevel
 getMultiresLevel h = do
   _1 <- getPointer h {- struct MultiresLevel * -}
@@ -990,6 +1055,7 @@ getMultiresLevel h = do
   _12 <- getInt h {- int -}
   _13 <- getInt h {- int -}
   return $ MultiresLevel _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getMultires :: BHeader -> Get Multires
 getMultires h = do
   _1 <- getListBase h {- struct ListBase -}
@@ -1006,6 +1072,7 @@ getMultires h = do
   _12 <- getPointer h {- short * -}
   _13 <- getPointer h {- char * -}
   return $ Multires _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getPartialVisibility :: BHeader -> Get PartialVisibility
 getPartialVisibility h = do
   _1 <- getPointer h {- int * -}
@@ -1017,6 +1084,7 @@ getPartialVisibility h = do
   _7 <- getInt h {- int -}
   _8 <- getInt h {- int -}
   return $ PartialVisibility _1 _2 _3 _4 _5 _6 _7 _8
+
 getModifierData :: BHeader -> Get ModifierData
 getModifierData h = do
   _1 <- getPointer h {- struct ModifierData * -}
@@ -1026,6 +1094,7 @@ getModifierData h = do
   _5 <- getByteString 32 {- char[32] -}
   _6 <- getPointer h {- char * -}
   return $ ModifierData _1 _2 _3 _4 _5 _6
+
 getSubsurfModifierData :: BHeader -> Get SubsurfModifierData
 getSubsurfModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1036,12 +1105,14 @@ getSubsurfModifierData h = do
   _6 <- getPointer h {- void * * -}
   _7 <- getPointer h {- void * * -}
   return $ SubsurfModifierData _1 _2 _3 _4 _5 _6 _7
+
 getLatticeModifierData :: BHeader -> Get LatticeModifierData
 getLatticeModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
   _2 <- getPointer h {- struct Object * -}
   _3 <- getByteString 32 {- char[32] -}
   return $ LatticeModifierData _1 _2 _3
+
 getCurveModifierData :: BHeader -> Get CurveModifierData
 getCurveModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1050,6 +1121,7 @@ getCurveModifierData h = do
   _4 <- getShort h {- short -}
   _5 <- getByteString 6 {- char[6] -}
   return $ CurveModifierData _1 _2 _3 _4 _5
+
 getBuildModifierData :: BHeader -> Get BuildModifierData
 getBuildModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1058,6 +1130,7 @@ getBuildModifierData h = do
   _4 <- getInt h {- int -}
   _5 <- getInt h {- int -}
   return $ BuildModifierData _1 _2 _3 _4 _5
+
 getArrayModifierData :: BHeader -> Get ArrayModifierData
 getArrayModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1074,6 +1147,7 @@ getArrayModifierData h = do
   _12 <- getInt h {- int -}
   _13 <- getInt h {- int -}
   return $ ArrayModifierData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getMirrorModifierData :: BHeader -> Get MirrorModifierData
 getMirrorModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1081,12 +1155,14 @@ getMirrorModifierData h = do
   _3 <- getShort h {- short -}
   _4 <- getFloat h {- float -}
   return $ MirrorModifierData _1 _2 _3 _4
+
 getEdgeSplitModifierData :: BHeader -> Get EdgeSplitModifierData
 getEdgeSplitModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
   _2 <- getFloat h {- float -}
   _3 <- getInt h {- int -}
   return $ EdgeSplitModifierData _1 _2 _3
+
 getDisplaceModifierData :: BHeader -> Get DisplaceModifierData
 getDisplaceModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1101,6 +1177,7 @@ getDisplaceModifierData h = do
   _10 <- getInt h {- int -}
   _11 <- getInt h {- int -}
   return $ DisplaceModifierData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11
+
 getUVProjectModifierData :: BHeader -> Get UVProjectModifierData
 getUVProjectModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1114,12 +1191,14 @@ getUVProjectModifierData h = do
   _9 <- getInt h {- int -}
   _10 <- getInt h {- int -}
   return $ UVProjectModifierData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getDecimateModifierData :: BHeader -> Get DecimateModifierData
 getDecimateModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
   _2 <- getFloat h {- float -}
   _3 <- getInt h {- int -}
   return $ DecimateModifierData _1 _2 _3
+
 getSmoothModifierData :: BHeader -> Get SmoothModifierData
 getSmoothModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1128,6 +1207,7 @@ getSmoothModifierData h = do
   _4 <- getShort h {- short -}
   _5 <- getShort h {- short -}
   return $ SmoothModifierData _1 _2 _3 _4 _5
+
 getCastModifierData :: BHeader -> Get CastModifierData
 getCastModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1139,6 +1219,7 @@ getCastModifierData h = do
   _7 <- getShort h {- short -}
   _8 <- getShort h {- short -}
   return $ CastModifierData _1 _2 _3 _4 _5 _6 _7 _8
+
 getWaveModifierData :: BHeader -> Get WaveModifierData
 getWaveModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1161,6 +1242,7 @@ getWaveModifierData h = do
   _18 <- getFloat h {- float -}
   _19 <- getFloat h {- float -}
   return $ WaveModifierData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19
+
 getArmatureModifierData :: BHeader -> Get ArmatureModifierData
 getArmatureModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1170,6 +1252,7 @@ getArmatureModifierData h = do
   _5 <- getPointer h {- struct Object * -}
   _6 <- getByteString 32 {- char[32] -}
   return $ ArmatureModifierData _1 _2 _3 _4 _5 _6
+
 getHookModifierData :: BHeader -> Get HookModifierData
 getHookModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1182,10 +1265,12 @@ getHookModifierData h = do
   _8 <- getFloat h {- float -}
   _9 <- getByteString 32 {- char[32] -}
   return $ HookModifierData _1 _2 _3 _4 _5 _6 _7 _8 _9
+
 getSoftbodyModifierData :: BHeader -> Get SoftbodyModifierData
 getSoftbodyModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
   return $ SoftbodyModifierData _1
+
 getBooleanModifierData :: BHeader -> Get BooleanModifierData
 getBooleanModifierData h = do
   _1 <- getModifierData h {- struct ModifierData -}
@@ -1193,6 +1278,7 @@ getBooleanModifierData h = do
   _3 <- getInt h {- int -}
   _4 <- getInt h {- int -}
   return $ BooleanModifierData _1 _2 _3 _4
+
 getLattice :: BHeader -> Get Lattice
 getLattice h = do
   _1 <- getID h {- struct ID -}
@@ -1220,23 +1306,27 @@ getLattice h = do
   _23 <- getPointer h {- struct Key * -}
   _24 <- getPointer h {- struct MDeformVert * -}
   return $ Lattice _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24
+
 getBDeformGroup :: BHeader -> Get BDeformGroup
 getBDeformGroup h = do
   _1 <- getPointer h {- struct bDeformGroup * -}
   _2 <- getPointer h {- struct bDeformGroup * -}
   _3 <- getByteString 32 {- char[32] -}
   return $ BDeformGroup _1 _2 _3
+
 getBoundBox :: BHeader -> Get BoundBox
 getBoundBox h = do
   _1 <- replicateM 3 (replicateM 8 (getFloat h {- float -}) {- float[8] -}) {- float [8][3] -}
   _2 <- getInt h {- int -}
   _3 <- getInt h {- int -}
   return $ BoundBox _1 _2 _3
+
 getOcInfo :: BHeader -> Get OcInfo
 getOcInfo h = do
   _1 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _2 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   return $ OcInfo _1 _2
+
 getLBuf :: BHeader -> Get LBuf
 getLBuf h = do
   _1 <- getShort h {- short -}
@@ -1244,6 +1334,7 @@ getLBuf h = do
   _3 <- getInt h {- int -}
   _4 <- getPointer h {- struct Object * * -}
   return $ LBuf _1 _2 _3 _4
+
 getObject :: BHeader -> Get Object
 getObject h = do
   _1 <- getID h {- struct ID -}
@@ -1350,6 +1441,7 @@ getObject h = do
   _102 <- getInt h {- int -}
   _103 <- getPointer h {- void * * -}
   return $ Object _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52 _53 _54 _55 _56 _57 _58 _59 _60 _61 _62 _63 _64 _65 _66 _67 _68 _69 _70 _71 _72 _73 _74 _75 _76 _77 _78 _79 _80 _81 _82 _83 _84 _85 _86 _87 _88 _89 _90 _91 _92 _93 _94 _95 _96 _97 _98 _99 _100 _101 _102 _103
+
 getObHook :: BHeader -> Get ObHook
 getObHook h = do
   _1 <- getPointer h {- struct ObHook * -}
@@ -1367,6 +1459,7 @@ getObHook h = do
   _13 <- getShort h {- short -}
   _14 <- getFloat h {- float -}
   return $ ObHook _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14
+
 getPartDeflect :: BHeader -> Get PartDeflect
 getPartDeflect h = do
   _1 <- getShort h {- short -}
@@ -1383,10 +1476,12 @@ getPartDeflect h = do
   _12 <- getFloat h {- float -}
   _13 <- getFloat h {- float -}
   return $ PartDeflect _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getSBVertex :: BHeader -> Get SBVertex
 getSBVertex h = do
   _1 <- replicateM 4 (getFloat h {- float -}) {- float[4] -}
   return $ SBVertex _1
+
 getSoftBody :: BHeader -> Get SoftBody
 getSoftBody h = do
   _1 <- getInt h {- int -}
@@ -1430,6 +1525,7 @@ getSoftBody h = do
   _39 <- getShort h {- short -}
   _40 <- getPointer h {- UnknownCompound SBScratch  -}
   return $ SoftBody _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40
+
 getFluidsimSettings :: BHeader -> Get FluidsimSettings
 getFluidsimSettings h = do
   _1 <- getShort h {- short -}
@@ -1473,6 +1569,7 @@ getFluidsimSettings h = do
   _39 <- getFloat h {- float -}
   _40 <- getPointer h {- struct MVert * -}
   return $ FluidsimSettings _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40
+
 getWorld :: BHeader -> Get World
 getWorld h = do
   _1 <- getID h {- struct ID -}
@@ -1533,6 +1630,7 @@ getWorld h = do
   _56 <- replicateM 10 (getPointer h {- struct MTex * -}) {- struct MTex *[10] -}
   _57 <- getScriptLink h {- struct ScriptLink -}
   return $ World _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52 _53 _54 _55 _56 _57
+
 getRadio :: BHeader -> Get Radio
 getRadio h = do
   _1 <- getShort h {- short -}
@@ -1552,6 +1650,7 @@ getRadio h = do
   _15 <- getFloat h {- float -}
   _16 <- getFloat h {- float -}
   return $ Radio _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16
+
 getBase :: BHeader -> Get Base
 getBase h = do
   _1 <- getPointer h {- struct Base * -}
@@ -1563,6 +1662,7 @@ getBase h = do
   _7 <- getShort h {- short -}
   _8 <- getPointer h {- struct Object * -}
   return $ Base _1 _2 _3 _4 _5 _6 _7 _8
+
 getAviCodecData :: BHeader -> Get AviCodecData
 getAviCodecData h = do
   _1 <- getPointer h {- void * * -}
@@ -1579,6 +1679,7 @@ getAviCodecData h = do
   _12 <- getInt h {- int -}
   _13 <- getByteString 128 {- char[128] -}
   return $ AviCodecData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getQuicktimeCodecData :: BHeader -> Get QuicktimeCodecData
 getQuicktimeCodecData h = do
   _1 <- getPointer h {- void * * -}
@@ -1587,6 +1688,7 @@ getQuicktimeCodecData h = do
   _4 <- getInt h {- int -}
   _5 <- getByteString 128 {- char[128] -}
   return $ QuicktimeCodecData _1 _2 _3 _4 _5
+
 getFFMpegCodecData :: BHeader -> Get FFMpegCodecData
 getFFMpegCodecData h = do
   _1 <- getInt h {- int -}
@@ -1602,6 +1704,7 @@ getFFMpegCodecData h = do
   _11 <- getInt h {- int -}
   _12 <- getInt h {- int -}
   return $ FFMpegCodecData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12
+
 getAudioData :: BHeader -> Get AudioData
 getAudioData h = do
   _1 <- getInt h {- int -}
@@ -1609,6 +1712,7 @@ getAudioData h = do
   _3 <- getShort h {- short -}
   _4 <- replicateM 3 (getShort h {- short -}) {- short[3] -}
   return $ AudioData _1 _2 _3 _4
+
 getSceneRenderLayer :: BHeader -> Get SceneRenderLayer
 getSceneRenderLayer h = do
   _1 <- getPointer h {- struct SceneRenderLayer * -}
@@ -1621,6 +1725,7 @@ getSceneRenderLayer h = do
   _8 <- getInt h {- int -}
   _9 <- getInt h {- int -}
   return $ SceneRenderLayer _1 _2 _3 _4 _5 _6 _7 _8 _9
+
 getRenderData :: BHeader -> Get RenderData
 getRenderData h = do
   _1 <- getPointer h {- struct AviCodecData * -}
@@ -1725,6 +1830,7 @@ getRenderData h = do
   _100 <- getByteString 160 {- char[160] -}
   _101 <- getByteString 160 {- char[160] -}
   return $ RenderData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52 _53 _54 _55 _56 _57 _58 _59 _60 _61 _62 _63 _64 _65 _66 _67 _68 _69 _70 _71 _72 _73 _74 _75 _76 _77 _78 _79 _80 _81 _82 _83 _84 _85 _86 _87 _88 _89 _90 _91 _92 _93 _94 _95 _96 _97 _98 _99 _100 _101
+
 getGameFraming :: BHeader -> Get GameFraming
 getGameFraming h = do
   _1 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
@@ -1733,6 +1839,7 @@ getGameFraming h = do
   _4 <- get {- char -}
   _5 <- get {- char -}
   return $ GameFraming _1 _2 _3 _4 _5
+
 getTimeMarker :: BHeader -> Get TimeMarker
 getTimeMarker h = do
   _1 <- getPointer h {- struct TimeMarker * -}
@@ -1741,6 +1848,7 @@ getTimeMarker h = do
   _4 <- getByteString 64 {- char[64] -}
   _5 <- getInt h {- int -}
   return $ TimeMarker _1 _2 _3 _4 _5
+
 getImagePaintSettings :: BHeader -> Get ImagePaintSettings
 getImagePaintSettings h = do
   _1 <- getPointer h {- struct Brush * -}
@@ -1748,6 +1856,7 @@ getImagePaintSettings h = do
   _3 <- getShort h {- short -}
   _4 <- getInt h {- int -}
   return $ ImagePaintSettings _1 _2 _3 _4
+
 getToolSettings :: BHeader -> Get ToolSettings
 getToolSettings h = do
   _1 <- getShort h {- short -}
@@ -1779,6 +1888,7 @@ getToolSettings h = do
   _27 <- get {- char -}
   _28 <- getByteString 2 {- char[2] -}
   return $ ToolSettings _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28
+
 getBrushData :: BHeader -> Get BrushData
 getBrushData h = do
   _1 <- getShort h {- short -}
@@ -1788,6 +1898,7 @@ getBrushData h = do
   _5 <- get {- char -}
   _6 <- getByteString 2 {- char[2] -}
   return $ BrushData _1 _2 _3 _4 _5 _6
+
 getSculptData :: BHeader -> Get SculptData
 getSculptData h = do
   _1 <- getPointer h {- UnknownCompound SculptSession  -}
@@ -1812,6 +1923,7 @@ getSculptData h = do
   _20 <- get {- char -}
   _21 <- get {- char -}
   return $ SculptData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21
+
 getScene :: BHeader -> Get Scene
 getScene h = do
   _1 <- getID h {- struct ID -}
@@ -1852,6 +1964,7 @@ getScene h = do
   _36 <- getShort h {- short -}
   _37 <- getSculptData h {- struct SculptData -}
   return $ Scene _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37
+
 getBGpic :: BHeader -> Get BGpic
 getBGpic h = do
   _1 <- getPointer h {- struct Image * -}
@@ -1864,6 +1977,7 @@ getBGpic h = do
   _8 <- getShort h {- short -}
   _9 <- getShort h {- short -}
   return $ BGpic _1 _2 _3 _4 _5 _6 _7 _8 _9
+
 getView3D :: BHeader -> Get View3D
 getView3D h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -1935,6 +2049,7 @@ getView3D h = do
   _67 <- getShort h {- short -}
   _68 <- getPointer h {- void * * -}
   return $ View3D _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52 _53 _54 _55 _56 _57 _58 _59 _60 _61 _62 _63 _64 _65 _66 _67 _68
+
 getView2D :: BHeader -> Get View2D
 getView2D h = do
   _1 <- getRctf h {- struct rctf -}
@@ -1954,6 +2069,7 @@ getView2D h = do
   _15 <- getShort h {- short -}
   _16 <- getInt h {- int -}
   return $ View2D _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16
+
 getSpaceLink :: BHeader -> Get SpaceLink
 getSpaceLink h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -1963,6 +2079,7 @@ getSpaceLink h = do
   _5 <- getPointer h {- struct ScrArea * -}
   _6 <- replicateM 8 (getShort h {- short -}) {- short[8] -}
   return $ SpaceLink _1 _2 _3 _4 _5 _6
+
 getSpaceInfo :: BHeader -> Get SpaceInfo
 getSpaceInfo h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -1972,6 +2089,7 @@ getSpaceInfo h = do
   _5 <- getPointer h {- struct ScrArea * -}
   _6 <- replicateM 8 (getShort h {- short -}) {- short[8] -}
   return $ SpaceInfo _1 _2 _3 _4 _5 _6
+
 getSpaceIpo :: BHeader -> Get SpaceIpo
 getSpaceIpo h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2001,6 +2119,7 @@ getSpaceIpo h = do
   _25 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _26 <- getRctf h {- struct rctf -}
   return $ SpaceIpo _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26
+
 getSpaceButs :: BHeader -> Get SpaceButs
 getSpaceButs h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2033,6 +2152,7 @@ getSpaceButs h = do
   _28 <- get {- char -}
   _29 <- getByteString 7 {- char[7] -}
   return $ SpaceButs _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29
+
 getSpaceSeq :: BHeader -> Get SpaceSeq
 getSpaceSeq h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2051,6 +2171,7 @@ getSpaceSeq h = do
   _14 <- getInt h {- int -}
   _15 <- getInt h {- int -}
   return $ SpaceSeq _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15
+
 getSpaceFile :: BHeader -> Get SpaceFile
 getSpaceFile h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2083,6 +2204,7 @@ getSpaceFile h = do
   _28 <- getPointer h {- short * -}
   _29 <- getPointer h {- char * -}
   return $ SpaceFile _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29
+
 getSpaceOops :: BHeader -> Get SpaceOops
 getSpaceOops h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2109,6 +2231,7 @@ getSpaceOops h = do
   _22 <- getShort h {- short -}
   _23 <- getShort h {- short -}
   return $ SpaceOops _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23
+
 getSpaceImage :: BHeader -> Get SpaceImage
 getSpaceImage h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2139,6 +2262,7 @@ getSpaceImage h = do
   _26 <- getPointer h {- char * -}
   _27 <- getPointer h {- UnknownCompound ImBuf  -}
   return $ SpaceImage _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27
+
 getSpaceNla :: BHeader -> Get SpaceNla
 getSpaceNla h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2152,6 +2276,7 @@ getSpaceNla h = do
   _9 <- getInt h {- int -}
   _10 <- getView2D h {- struct View2D -}
   return $ SpaceNla _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getSpaceText :: BHeader -> Get SpaceText
 getSpaceText h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2177,6 +2302,7 @@ getSpaceText h = do
   _21 <- getRcti h {- struct rcti -}
   _22 <- getRcti h {- struct rcti -}
   return $ SpaceText _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22
+
 getSpaceScript :: BHeader -> Get SpaceScript
 getSpaceScript h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2190,6 +2316,7 @@ getSpaceScript h = do
   _9 <- getInt h {- int -}
   _10 <- getPointer h {- void * * -}
   return $ SpaceScript _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getSpaceTime :: BHeader -> Get SpaceTime
 getSpaceTime h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2201,6 +2328,7 @@ getSpaceTime h = do
   _7 <- getInt h {- int -}
   _8 <- getInt h {- int -}
   return $ SpaceTime _1 _2 _3 _4 _5 _6 _7 _8
+
 getSpaceNode :: BHeader -> Get SpaceNode
 getSpaceNode h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2222,6 +2350,7 @@ getSpaceNode h = do
   _17 <- getInt h {- int -}
   _18 <- getInt h {- int -}
   return $ SpaceNode _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18
+
 getSpaceImaSel :: BHeader -> Get SpaceImaSel
 getSpaceImaSel h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -2306,6 +2435,7 @@ getSpaceImaSel h = do
   _80 <- getPointer h {- void * (*xxx)() -}
   _81 <- getPointer h {- void * * -}
   return $ SpaceImaSel _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52 _53 _54 _55 _56 _57 _58 _59 _60 _61 _62 _63 _64 _65 _66 _67 _68 _69 _70 _71 _72 _73 _74 _75 _76 _77 _78 _79 _80 _81
+
 getThemeUI :: BHeader -> Get ThemeUI
 getThemeUI h = do
   _1 <- getByteString 4 {- char[4] -}
@@ -2329,6 +2459,7 @@ getThemeUI h = do
   _19 <- getByteString 3 {- char[3] -}
   _20 <- getByteString 80 {- char[80] -}
   return $ ThemeUI _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20
+
 getThemeSpace :: BHeader -> Get ThemeSpace
 getThemeSpace h = do
   _1 <- getByteString 4 {- char[4] -}
@@ -2380,6 +2511,7 @@ getThemeSpace h = do
   _47 <- getByteString 4 {- char[4] -}
   _48 <- getByteString 4 {- char[4] -}
   return $ ThemeSpace _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48
+
 getBTheme :: BHeader -> Get BTheme
 getBTheme h = do
   _1 <- getPointer h {- struct bTheme * -}
@@ -2404,6 +2536,7 @@ getBTheme h = do
   _20 <- getByteString 4 {- char[4] -}
   _21 <- getByteString 4 {- char[4] -}
   return $ BTheme _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21
+
 getSolidLight :: BHeader -> Get SolidLight
 getSolidLight h = do
   _1 <- getInt h {- int -}
@@ -2412,6 +2545,7 @@ getSolidLight h = do
   _4 <- replicateM 4 (getFloat h {- float -}) {- float[4] -}
   _5 <- replicateM 4 (getFloat h {- float -}) {- float[4] -}
   return $ SolidLight _1 _2 _3 _4 _5
+
 getUserDef :: BHeader -> Get UserDef
 getUserDef h = do
   _1 <- getInt h {- int -}
@@ -2467,6 +2601,7 @@ getUserDef h = do
   _51 <- getShort h {- short -}
   _52 <- getByteString 6 {- char[6] -}
   return $ UserDef _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52
+
 getBScreen :: BHeader -> Get BScreen
 getBScreen h = do
   _1 <- getID h {- struct ID -}
@@ -2488,6 +2623,7 @@ getBScreen h = do
   _17 <- getShort h {- short -}
   _18 <- replicateM 8 (getShort h {- short -}) {- short[8] -}
   return $ BScreen _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18
+
 getScrVert :: BHeader -> Get ScrVert
 getScrVert h = do
   _1 <- getPointer h {- struct ScrVert * -}
@@ -2496,6 +2632,7 @@ getScrVert h = do
   _4 <- getVec2s h {- struct vec2s -}
   _5 <- getInt h {- int -}
   return $ ScrVert _1 _2 _3 _4 _5
+
 getScrEdge :: BHeader -> Get ScrEdge
 getScrEdge h = do
   _1 <- getPointer h {- struct ScrEdge * -}
@@ -2506,6 +2643,7 @@ getScrEdge h = do
   _6 <- getShort h {- short -}
   _7 <- getInt h {- int -}
   return $ ScrEdge _1 _2 _3 _4 _5 _6 _7
+
 getPanel :: BHeader -> Get Panel
 getPanel h = do
   _1 <- getPointer h {- struct Panel * -}
@@ -2526,6 +2664,7 @@ getPanel h = do
   _16 <- getInt h {- int -}
   _17 <- getPointer h {- struct Panel * -}
   return $ Panel _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17
+
 getScrArea :: BHeader -> Get ScrArea
 getScrArea h = do
   _1 <- getPointer h {- struct ScrArea * -}
@@ -2559,6 +2698,7 @@ getScrArea h = do
   _29 <- getListBase h {- struct ListBase -}
   _30 <- getListBase h {- struct ListBase -}
   return $ ScrArea _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30
+
 getFileGlobal :: BHeader -> Get FileGlobal
 getFileGlobal h = do
   _1 <- getByteString 4 {- char[4] -}
@@ -2573,6 +2713,7 @@ getFileGlobal h = do
   _10 <- getInt h {- int -}
   _11 <- getInt h {- int -}
   return $ FileGlobal _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11
+
 getStripElem :: BHeader -> Get StripElem
 getStripElem h = do
   _1 <- getByteString 80 {- char[80] -}
@@ -2584,6 +2725,7 @@ getStripElem h = do
   _7 <- getShort h {- short -}
   _8 <- getInt h {- int -}
   return $ StripElem _1 _2 _3 _4 _5 _6 _7 _8
+
 getStrip :: BHeader -> Get Strip
 getStrip h = do
   _1 <- getPointer h {- struct Strip * -}
@@ -2597,6 +2739,7 @@ getStrip h = do
   _9 <- getInt h {- int -}
   _10 <- getInt h {- int -}
   return $ Strip _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getPluginSeq :: BHeader -> Get PluginSeq
 getPluginSeq h = do
   _1 <- getByteString 256 {- char[256] -}
@@ -2612,6 +2755,7 @@ getPluginSeq h = do
   _11 <- getPointer h {- void * (*xxx)() -}
   _12 <- getPointer h {- void * (*xxx)() -}
   return $ PluginSeq _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12
+
 getSequence :: BHeader -> Get Sequence
 getSequence h = do
   _1 <- getPointer h {- struct Sequence * -}
@@ -2656,6 +2800,7 @@ getSequence h = do
   _40 <- getInt h {- int -}
   _41 <- getInt h {- int -}
   return $ Sequence _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41
+
 getMetaStack :: BHeader -> Get MetaStack
 getMetaStack h = do
   _1 <- getPointer h {- struct MetaStack * -}
@@ -2663,6 +2808,7 @@ getMetaStack h = do
   _3 <- getPointer h {- struct ListBase * -}
   _4 <- getPointer h {- struct Sequence * -}
   return $ MetaStack _1 _2 _3 _4
+
 getEditing :: BHeader -> Get Editing
 getEditing h = do
   _1 <- getPointer h {- struct ListBase * -}
@@ -2672,6 +2818,7 @@ getEditing h = do
   _5 <- getShort h {- short -}
   _6 <- getInt h {- int -}
   return $ Editing _1 _2 _3 _4 _5 _6
+
 getWipeVars :: BHeader -> Get WipeVars
 getWipeVars h = do
   _1 <- getFloat h {- float -}
@@ -2679,6 +2826,7 @@ getWipeVars h = do
   _3 <- getShort h {- short -}
   _4 <- getShort h {- short -}
   return $ WipeVars _1 _2 _3 _4
+
 getGlowVars :: BHeader -> Get GlowVars
 getGlowVars h = do
   _1 <- getFloat h {- float -}
@@ -2688,6 +2836,7 @@ getGlowVars h = do
   _5 <- getInt h {- int -}
   _6 <- getInt h {- int -}
   return $ GlowVars _1 _2 _3 _4 _5 _6
+
 getTransformVars :: BHeader -> Get TransformVars
 getTransformVars h = do
   _1 <- getFloat h {- float -}
@@ -2701,11 +2850,13 @@ getTransformVars h = do
   _9 <- getFloat h {- float -}
   _10 <- getFloat h {- float -}
   return $ TransformVars _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getSolidColorVars :: BHeader -> Get SolidColorVars
 getSolidColorVars h = do
   _1 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _2 <- getFloat h {- float -}
   return $ SolidColorVars _1 _2
+
 getSpeedControlVars :: BHeader -> Get SpeedControlVars
 getSpeedControlVars h = do
   _1 <- getPointer h {- float * -}
@@ -2714,6 +2865,7 @@ getSpeedControlVars h = do
   _4 <- getInt h {- int -}
   _5 <- getInt h {- int -}
   return $ SpeedControlVars _1 _2 _3 _4 _5
+
 getEffect :: BHeader -> Get Effect
 getEffect h = do
   _1 <- getPointer h {- struct Effect * -}
@@ -2723,6 +2875,7 @@ getEffect h = do
   _5 <- getShort h {- short -}
   _6 <- getShort h {- short -}
   return $ Effect _1 _2 _3 _4 _5 _6
+
 getBuildEff :: BHeader -> Get BuildEff
 getBuildEff h = do
   _1 <- getPointer h {- struct BuildEff * -}
@@ -2734,6 +2887,7 @@ getBuildEff h = do
   _7 <- getFloat h {- float -}
   _8 <- getFloat h {- float -}
   return $ BuildEff _1 _2 _3 _4 _5 _6 _7 _8
+
 getPartEff :: BHeader -> Get PartEff
 getPartEff h = do
   _1 <- getPointer h {- struct PartEff * -}
@@ -2782,6 +2936,7 @@ getPartEff h = do
   _44 <- getPointer h {- UnknownCompound Particle  -}
   _45 <- getPointer h {- struct Group * -}
   return $ PartEff _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45
+
 getWaveEff :: BHeader -> Get WaveEff
 getWaveEff h = do
   _1 <- getPointer h {- struct WaveEff * -}
@@ -2801,6 +2956,7 @@ getWaveEff h = do
   _15 <- getFloat h {- float -}
   _16 <- getFloat h {- float -}
   return $ WaveEff _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16
+
 getTreeStoreElem :: BHeader -> Get TreeStoreElem
 getTreeStoreElem h = do
   _1 <- getShort h {- short -}
@@ -2809,12 +2965,14 @@ getTreeStoreElem h = do
   _4 <- getShort h {- short -}
   _5 <- getPointer h {- struct ID * -}
   return $ TreeStoreElem _1 _2 _3 _4 _5
+
 getTreeStore :: BHeader -> Get TreeStore
 getTreeStore h = do
   _1 <- getInt h {- int -}
   _2 <- getInt h {- int -}
   _3 <- getPointer h {- struct TreeStoreElem * -}
   return $ TreeStore _1 _2 _3
+
 getOops :: BHeader -> Get Oops
 getOops h = do
   _1 <- getPointer h {- struct Oops * -}
@@ -2830,6 +2988,7 @@ getOops h = do
   _11 <- getPointer h {- struct ID * -}
   _12 <- getListBase h {- struct ListBase -}
   return $ Oops _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12
+
 getBProperty :: BHeader -> Get BProperty
 getBProperty h = do
   _1 <- getPointer h {- struct bProperty * -}
@@ -2844,6 +3003,7 @@ getBProperty h = do
   _10 <- getPointer h {- void * * -}
   _11 <- getPointer h {- void * * -}
   return $ BProperty _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11
+
 getBNearSensor :: BHeader -> Get BNearSensor
 getBNearSensor h = do
   _1 <- getByteString 32 {- char[32] -}
@@ -2852,6 +3012,7 @@ getBNearSensor h = do
   _4 <- getInt h {- int -}
   _5 <- getInt h {- int -}
   return $ BNearSensor _1 _2 _3 _4 _5
+
 getBMouseSensor :: BHeader -> Get BMouseSensor
 getBMouseSensor h = do
   _1 <- getShort h {- short -}
@@ -2859,6 +3020,7 @@ getBMouseSensor h = do
   _3 <- getShort h {- short -}
   _4 <- getShort h {- short -}
   return $ BMouseSensor _1 _2 _3 _4
+
 getBTouchSensor :: BHeader -> Get BTouchSensor
 getBTouchSensor h = do
   _1 <- getByteString 32 {- char[32] -}
@@ -2866,6 +3028,7 @@ getBTouchSensor h = do
   _3 <- getFloat h {- float -}
   _4 <- getFloat h {- float -}
   return $ BTouchSensor _1 _2 _3 _4
+
 getBKeyboardSensor :: BHeader -> Get BKeyboardSensor
 getBKeyboardSensor h = do
   _1 <- getShort h {- short -}
@@ -2875,6 +3038,7 @@ getBKeyboardSensor h = do
   _5 <- getByteString 32 {- char[32] -}
   _6 <- getByteString 32 {- char[32] -}
   return $ BKeyboardSensor _1 _2 _3 _4 _5 _6
+
 getBPropertySensor :: BHeader -> Get BPropertySensor
 getBPropertySensor h = do
   _1 <- getInt h {- int -}
@@ -2883,6 +3047,7 @@ getBPropertySensor h = do
   _4 <- getByteString 32 {- char[32] -}
   _5 <- getByteString 32 {- char[32] -}
   return $ BPropertySensor _1 _2 _3 _4 _5
+
 getBCollisionSensor :: BHeader -> Get BCollisionSensor
 getBCollisionSensor h = do
   _1 <- getByteString 32 {- char[32] -}
@@ -2892,6 +3057,7 @@ getBCollisionSensor h = do
   _5 <- getShort h {- short -}
   _6 <- getShort h {- short -}
   return $ BCollisionSensor _1 _2 _3 _4 _5 _6
+
 getBRadarSensor :: BHeader -> Get BRadarSensor
 getBRadarSensor h = do
   _1 <- getByteString 32 {- char[32] -}
@@ -2900,12 +3066,14 @@ getBRadarSensor h = do
   _4 <- getShort h {- short -}
   _5 <- getShort h {- short -}
   return $ BRadarSensor _1 _2 _3 _4 _5
+
 getBRandomSensor :: BHeader -> Get BRandomSensor
 getBRandomSensor h = do
   _1 <- getByteString 32 {- char[32] -}
   _2 <- getInt h {- int -}
   _3 <- getInt h {- int -}
   return $ BRandomSensor _1 _2 _3
+
 getBRaySensor :: BHeader -> Get BRaySensor
 getBRaySensor h = do
   _1 <- getByteString 32 {- char[32] -}
@@ -2916,12 +3084,14 @@ getBRaySensor h = do
   _6 <- getShort h {- short -}
   _7 <- getInt h {- int -}
   return $ BRaySensor _1 _2 _3 _4 _5 _6 _7
+
 getBMessageSensor :: BHeader -> Get BMessageSensor
 getBMessageSensor h = do
   _1 <- getPointer h {- struct Object * -}
   _2 <- getByteString 32 {- char[32] -}
   _3 <- getByteString 32 {- char[32] -}
   return $ BMessageSensor _1 _2 _3
+
 getBSensor :: BHeader -> Get BSensor
 getBSensor h = do
   _1 <- getPointer h {- struct bSensor * -}
@@ -2942,6 +3112,7 @@ getBSensor h = do
   _16 <- getShort h {- short -}
   _17 <- getInt h {- int -}
   return $ BSensor _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17
+
 getBJoystickSensor :: BHeader -> Get BJoystickSensor
 getBJoystickSensor h = do
   _1 <- getByteString 32 {- char[32] -}
@@ -2955,14 +3126,17 @@ getBJoystickSensor h = do
   _9 <- getInt h {- int -}
   _10 <- getInt h {- int -}
   return $ BJoystickSensor _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBExpressionCont :: BHeader -> Get BExpressionCont
 getBExpressionCont h = do
   _1 <- getByteString 128 {- char[128] -}
   return $ BExpressionCont _1
+
 getBPythonCont :: BHeader -> Get BPythonCont
 getBPythonCont h = do
   _1 <- getPointer h {- struct Text * -}
   return $ BPythonCont _1
+
 getBController :: BHeader -> Get BController
 getBController h = do
   _1 <- getPointer h {- struct bController * -}
@@ -2984,12 +3158,14 @@ getBController h = do
   _17 <- getShort h {- short -}
   _18 <- getInt h {- int -}
   return $ BController _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18
+
 getBAddObjectActuator :: BHeader -> Get BAddObjectActuator
 getBAddObjectActuator h = do
   _1 <- getInt h {- int -}
   _2 <- getInt h {- int -}
   _3 <- getPointer h {- struct Object * -}
   return $ BAddObjectActuator _1 _2 _3
+
 getBActionActuator :: BHeader -> Get BActionActuator
 getBActionActuator h = do
   _1 <- getPointer h {- struct bAction * -}
@@ -3003,6 +3179,7 @@ getBActionActuator h = do
   _9 <- getShort h {- short -}
   _10 <- getFloat h {- float -}
   return $ BActionActuator _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBSoundActuator :: BHeader -> Get BSoundActuator
 getBSoundActuator h = do
   _1 <- getShort h {- short -}
@@ -3016,6 +3193,7 @@ getBSoundActuator h = do
   _9 <- getShort h {- short -}
   _10 <- replicateM 1 (getShort h {- short -}) {- short[1] -}
   return $ BSoundActuator _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBCDActuator :: BHeader -> Get BCDActuator
 getBCDActuator h = do
   _1 <- getShort h {- short -}
@@ -3026,6 +3204,7 @@ getBCDActuator h = do
   _6 <- getShort h {- short -}
   _7 <- getFloat h {- float -}
   return $ BCDActuator _1 _2 _3 _4 _5 _6 _7
+
 getBEditObjectActuator :: BHeader -> Get BEditObjectActuator
 getBEditObjectActuator h = do
   _1 <- getInt h {- int -}
@@ -3038,6 +3217,7 @@ getBEditObjectActuator h = do
   _8 <- getShort h {- short -}
   _9 <- getShort h {- short -}
   return $ BEditObjectActuator _1 _2 _3 _4 _5 _6 _7 _8 _9
+
 getBSceneActuator :: BHeader -> Get BSceneActuator
 getBSceneActuator h = do
   _1 <- getShort h {- short -}
@@ -3046,6 +3226,7 @@ getBSceneActuator h = do
   _4 <- getPointer h {- struct Scene * -}
   _5 <- getPointer h {- struct Object * -}
   return $ BSceneActuator _1 _2 _3 _4 _5
+
 getBPropertyActuator :: BHeader -> Get BPropertyActuator
 getBPropertyActuator h = do
   _1 <- getInt h {- int -}
@@ -3054,6 +3235,7 @@ getBPropertyActuator h = do
   _4 <- getByteString 32 {- char[32] -}
   _5 <- getPointer h {- struct Object * -}
   return $ BPropertyActuator _1 _2 _3 _4 _5
+
 getBObjectActuator :: BHeader -> Get BObjectActuator
 getBObjectActuator h = do
   _1 <- getInt h {- int -}
@@ -3067,6 +3249,7 @@ getBObjectActuator h = do
   _9 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _10 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   return $ BObjectActuator _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBIpoActuator :: BHeader -> Get BIpoActuator
 getBIpoActuator h = do
   _1 <- getShort h {- short -}
@@ -3079,6 +3262,7 @@ getBIpoActuator h = do
   _8 <- getShort h {- short -}
   _9 <- getShort h {- short -}
   return $ BIpoActuator _1 _2 _3 _4 _5 _6 _7 _8 _9
+
 getBCameraActuator :: BHeader -> Get BCameraActuator
 getBCameraActuator h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3090,6 +3274,7 @@ getBCameraActuator h = do
   _7 <- getShort h {- short -}
   _8 <- getFloat h {- float -}
   return $ BCameraActuator _1 _2 _3 _4 _5 _6 _7 _8
+
 getBConstraintActuator :: BHeader -> Get BConstraintActuator
 getBConstraintActuator h = do
   _1 <- getShort h {- short -}
@@ -3100,6 +3285,7 @@ getBConstraintActuator h = do
   _6 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _7 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   return $ BConstraintActuator _1 _2 _3 _4 _5 _6 _7
+
 getBGroupActuator :: BHeader -> Get BGroupActuator
 getBGroupActuator h = do
   _1 <- getShort h {- short -}
@@ -3113,6 +3299,7 @@ getBGroupActuator h = do
   _9 <- getShort h {- short -}
   _10 <- getPointer h {- struct Group * -}
   return $ BGroupActuator _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBRandomActuator :: BHeader -> Get BRandomActuator
 getBRandomActuator h = do
   _1 <- getInt h {- int -}
@@ -3123,6 +3310,7 @@ getBRandomActuator h = do
   _6 <- getFloat h {- float -}
   _7 <- getByteString 32 {- char[32] -}
   return $ BRandomActuator _1 _2 _3 _4 _5 _6 _7
+
 getBMessageActuator :: BHeader -> Get BMessageActuator
 getBMessageActuator h = do
   _1 <- getByteString 32 {- char[32] -}
@@ -3133,6 +3321,7 @@ getBMessageActuator h = do
   _6 <- getInt h {- int -}
   _7 <- getByteString 32 {- char[32] -}
   return $ BMessageActuator _1 _2 _3 _4 _5 _6 _7
+
 getBGameActuator :: BHeader -> Get BGameActuator
 getBGameActuator h = do
   _1 <- getShort h {- short -}
@@ -3142,10 +3331,12 @@ getBGameActuator h = do
   _5 <- getByteString 64 {- char[64] -}
   _6 <- getByteString 64 {- char[64] -}
   return $ BGameActuator _1 _2 _3 _4 _5 _6
+
 getBVisibilityActuator :: BHeader -> Get BVisibilityActuator
 getBVisibilityActuator h = do
   _1 <- getInt h {- int -}
   return $ BVisibilityActuator _1
+
 getBActuator :: BHeader -> Get BActuator
 getBActuator h = do
   _1 <- getPointer h {- struct bActuator * -}
@@ -3159,6 +3350,7 @@ getBActuator h = do
   _9 <- getPointer h {- void * * -}
   _10 <- getPointer h {- struct Object * -}
   return $ BActuator _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getFreeCamera :: BHeader -> Get FreeCamera
 getFreeCamera h = do
   _1 <- getFloat h {- float -}
@@ -3172,6 +3364,7 @@ getFreeCamera h = do
   _9 <- getFloat h {- float -}
   _10 <- getFloat h {- float -}
   return $ FreeCamera _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBSound :: BHeader -> Get BSound
 getBSound h = do
   _1 <- getID h {- struct ID -}
@@ -3195,6 +3388,7 @@ getBSound h = do
   _19 <- get {- char -}
   _20 <- getByteString 10 {- char[10] -}
   return $ BSound _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20
+
 getBSoundListener :: BHeader -> Get BSoundListener
 getBSoundListener h = do
   _1 <- getID h {- struct ID -}
@@ -3204,6 +3398,7 @@ getBSoundListener h = do
   _5 <- getShort h {- short -}
   _6 <- getShort h {- short -}
   return $ BSoundListener _1 _2 _3 _4 _5 _6
+
 getSpaceSound :: BHeader -> Get SpaceSound
 getSpaceSound h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -3221,6 +3416,7 @@ getSpaceSound h = do
   _13 <- getShort h {- short -}
   _14 <- getInt h {- int -}
   return $ SpaceSound _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14
+
 getGroupObject :: BHeader -> Get GroupObject
 getGroupObject h = do
   _1 <- getPointer h {- struct GroupObject * -}
@@ -3230,6 +3426,7 @@ getGroupObject h = do
   _5 <- getInt h {- int -}
   _6 <- getInt h {- int -}
   return $ GroupObject _1 _2 _3 _4 _5 _6
+
 getGroup :: BHeader -> Get Group
 getGroup h = do
   _1 <- getID h {- struct ID -}
@@ -3237,6 +3434,7 @@ getGroup h = do
   _3 <- getInt h {- int -}
   _4 <- getInt h {- int -}
   return $ Group _1 _2 _3 _4
+
 getBone :: BHeader -> Get Bone
 getBone h = do
   _1 <- getPointer h {- struct Bone * -}
@@ -3265,6 +3463,7 @@ getBone h = do
   _24 <- getShort h {- short -}
   _25 <- getShort h {- short -}
   return $ Bone _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25
+
 getBArmature :: BHeader -> Get BArmature
 getBArmature h = do
   _1 <- getID h {- struct ID -}
@@ -3285,6 +3484,7 @@ getBArmature h = do
   _16 <- getInt h {- int -}
   _17 <- getInt h {- int -}
   return $ BArmature _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17
+
 getBPoseChannel :: BHeader -> Get BPoseChannel
 getBPoseChannel h = do
   _1 <- getPointer h {- struct bPoseChannel * -}
@@ -3319,6 +3519,7 @@ getBPoseChannel h = do
   _30 <- getPointer h {- float * -}
   _31 <- getPointer h {- struct Object * -}
   return $ BPoseChannel _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31
+
 getBPose :: BHeader -> Get BPose
 getBPose h = do
   _1 <- getListBase h {- struct ListBase -}
@@ -3328,6 +3529,7 @@ getBPose h = do
   _5 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _6 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   return $ BPose _1 _2 _3 _4 _5 _6
+
 getBActionChannel :: BHeader -> Get BActionChannel
 getBActionChannel h = do
   _1 <- getPointer h {- struct bActionChannel * -}
@@ -3338,11 +3540,13 @@ getBActionChannel h = do
   _6 <- getByteString 32 {- char[32] -}
   _7 <- getInt h {- int -}
   return $ BActionChannel _1 _2 _3 _4 _5 _6 _7
+
 getBAction :: BHeader -> Get BAction
 getBAction h = do
   _1 <- getID h {- struct ID -}
   _2 <- getListBase h {- struct ListBase -}
   return $ BAction _1 _2
+
 getSpaceAction :: BHeader -> Get SpaceAction
 getSpaceAction h = do
   _1 <- getPointer h {- struct SpaceLink * -}
@@ -3361,6 +3565,7 @@ getSpaceAction h = do
   _14 <- getShort h {- short -}
   _15 <- getFloat h {- float -}
   return $ SpaceAction _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15
+
 getBConstraintChannel :: BHeader -> Get BConstraintChannel
 getBConstraintChannel h = do
   _1 <- getPointer h {- struct bConstraintChannel * -}
@@ -3369,6 +3574,7 @@ getBConstraintChannel h = do
   _4 <- getShort h {- short -}
   _5 <- getByteString 30 {- char[30] -}
   return $ BConstraintChannel _1 _2 _3 _4 _5
+
 getBConstraint :: BHeader -> Get BConstraint
 getBConstraint h = do
   _1 <- getPointer h {- struct bConstraint * -}
@@ -3380,6 +3586,7 @@ getBConstraint h = do
   _7 <- getByteString 30 {- char[30] -}
   _8 <- getFloat h {- float -}
   return $ BConstraint _1 _2 _3 _4 _5 _6 _7 _8
+
 getBKinematicConstraint :: BHeader -> Get BKinematicConstraint
 getBKinematicConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3392,6 +3599,7 @@ getBKinematicConstraint h = do
   _8 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _9 <- getInt h {- int -}
   return $ BKinematicConstraint _1 _2 _3 _4 _5 _6 _7 _8 _9
+
 getBTrackToConstraint :: BHeader -> Get BTrackToConstraint
 getBTrackToConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3401,6 +3609,7 @@ getBTrackToConstraint h = do
   _5 <- getInt h {- int -}
   _6 <- getByteString 32 {- char[32] -}
   return $ BTrackToConstraint _1 _2 _3 _4 _5 _6
+
 getBRotateLikeConstraint :: BHeader -> Get BRotateLikeConstraint
 getBRotateLikeConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3408,6 +3617,7 @@ getBRotateLikeConstraint h = do
   _3 <- getInt h {- int -}
   _4 <- getByteString 32 {- char[32] -}
   return $ BRotateLikeConstraint _1 _2 _3 _4
+
 getBLocateLikeConstraint :: BHeader -> Get BLocateLikeConstraint
 getBLocateLikeConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3415,6 +3625,7 @@ getBLocateLikeConstraint h = do
   _3 <- getInt h {- int -}
   _4 <- getByteString 32 {- char[32] -}
   return $ BLocateLikeConstraint _1 _2 _3 _4
+
 getBMinMaxConstraint :: BHeader -> Get BMinMaxConstraint
 getBMinMaxConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3428,6 +3639,7 @@ getBMinMaxConstraint h = do
   _9 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _10 <- getByteString 32 {- char[32] -}
   return $ BMinMaxConstraint _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBSizeLikeConstraint :: BHeader -> Get BSizeLikeConstraint
 getBSizeLikeConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3435,6 +3647,7 @@ getBSizeLikeConstraint h = do
   _3 <- getInt h {- int -}
   _4 <- getByteString 32 {- char[32] -}
   return $ BSizeLikeConstraint _1 _2 _3 _4
+
 getBActionConstraint :: BHeader -> Get BActionConstraint
 getBActionConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3448,6 +3661,7 @@ getBActionConstraint h = do
   _9 <- getPointer h {- struct bAction * -}
   _10 <- getByteString 32 {- char[32] -}
   return $ BActionConstraint _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBLockTrackConstraint :: BHeader -> Get BLockTrackConstraint
 getBLockTrackConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3455,6 +3669,7 @@ getBLockTrackConstraint h = do
   _3 <- getInt h {- int -}
   _4 <- getByteString 32 {- char[32] -}
   return $ BLockTrackConstraint _1 _2 _3 _4
+
 getBFollowPathConstraint :: BHeader -> Get BFollowPathConstraint
 getBFollowPathConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3463,6 +3678,7 @@ getBFollowPathConstraint h = do
   _4 <- getInt h {- int -}
   _5 <- getInt h {- int -}
   return $ BFollowPathConstraint _1 _2 _3 _4 _5
+
 getBDistanceLimitConstraint :: BHeader -> Get BDistanceLimitConstraint
 getBDistanceLimitConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3472,6 +3688,7 @@ getBDistanceLimitConstraint h = do
   _5 <- getFloat h {- float -}
   _6 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   return $ BDistanceLimitConstraint _1 _2 _3 _4 _5 _6
+
 getBRotationConstraint :: BHeader -> Get BRotationConstraint
 getBRotationConstraint h = do
   _1 <- getFloat h {- float -}
@@ -3481,6 +3698,7 @@ getBRotationConstraint h = do
   _5 <- getFloat h {- float -}
   _6 <- getFloat h {- float -}
   return $ BRotationConstraint _1 _2 _3 _4 _5 _6
+
 getBStretchToConstraint :: BHeader -> Get BStretchToConstraint
 getBStretchToConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3490,6 +3708,7 @@ getBStretchToConstraint h = do
   _5 <- getFloat h {- float -}
   _6 <- getByteString 32 {- char[32] -}
   return $ BStretchToConstraint _1 _2 _3 _4 _5 _6
+
 getBLocLimitConstraint :: BHeader -> Get BLocLimitConstraint
 getBLocLimitConstraint h = do
   _1 <- getFloat h {- float -}
@@ -3501,6 +3720,7 @@ getBLocLimitConstraint h = do
   _7 <- getShort h {- short -}
   _8 <- getShort h {- short -}
   return $ BLocLimitConstraint _1 _2 _3 _4 _5 _6 _7 _8
+
 getBRotLimitConstraint :: BHeader -> Get BRotLimitConstraint
 getBRotLimitConstraint h = do
   _1 <- getFloat h {- float -}
@@ -3512,6 +3732,7 @@ getBRotLimitConstraint h = do
   _7 <- getShort h {- short -}
   _8 <- getShort h {- short -}
   return $ BRotLimitConstraint _1 _2 _3 _4 _5 _6 _7 _8
+
 getBSizeLimitConstraint :: BHeader -> Get BSizeLimitConstraint
 getBSizeLimitConstraint h = do
   _1 <- getFloat h {- float -}
@@ -3523,6 +3744,7 @@ getBSizeLimitConstraint h = do
   _7 <- getShort h {- short -}
   _8 <- getShort h {- short -}
   return $ BSizeLimitConstraint _1 _2 _3 _4 _5 _6 _7 _8
+
 getBRigidBodyJointConstraint :: BHeader -> Get BRigidBodyJointConstraint
 getBRigidBodyJointConstraint h = do
   _1 <- getPointer h {- struct Object * -}
@@ -3542,12 +3764,14 @@ getBRigidBodyJointConstraint h = do
   _15 <- getShort h {- short -}
   _16 <- getShort h {- short -}
   return $ BRigidBodyJointConstraint _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16
+
 getBClampToConstraint :: BHeader -> Get BClampToConstraint
 getBClampToConstraint h = do
   _1 <- getPointer h {- struct Object * -}
   _2 <- getInt h {- int -}
   _3 <- getInt h {- int -}
   return $ BClampToConstraint _1 _2 _3
+
 getBActionModifier :: BHeader -> Get BActionModifier
 getBActionModifier h = do
   _1 <- getPointer h {- struct bActionModifier * -}
@@ -3561,6 +3785,7 @@ getBActionModifier h = do
   _9 <- getShort h {- short -}
   _10 <- getPointer h {- struct Object * -}
   return $ BActionModifier _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getBActionStrip :: BHeader -> Get BActionStrip
 getBActionStrip h = do
   _1 <- getPointer h {- struct bActionStrip * -}
@@ -3586,6 +3811,7 @@ getBActionStrip h = do
   _21 <- getByteString 32 {- char[32] -}
   _22 <- getListBase h {- struct ListBase -}
   return $ BActionStrip _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22
+
 getBNodeStack :: BHeader -> Get BNodeStack
 getBNodeStack h = do
   _1 <- replicateM 4 (getFloat h {- float -}) {- float[4] -}
@@ -3597,6 +3823,7 @@ getBNodeStack h = do
   _7 <- getShort h {- short -}
   _8 <- getShort h {- short -}
   return $ BNodeStack _1 _2 _3 _4 _5 _6 _7 _8
+
 getBNodeSocket :: BHeader -> Get BNodeSocket
 getBNodeSocket h = do
   _1 <- getPointer h {- struct bNodeSocket * -}
@@ -3617,6 +3844,7 @@ getBNodeSocket h = do
   _16 <- getPointer h {- struct bNodeSocket * -}
   _17 <- getPointer h {- struct bNodeLink * -}
   return $ BNodeSocket _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17
+
 getBNode :: BHeader -> Get BNode
 getBNode h = do
   _1 <- getPointer h {- struct bNode * -}
@@ -3649,6 +3877,7 @@ getBNode h = do
   _28 <- getPointer h {- UnknownCompound bNodePreview  -}
   _29 <- getPointer h {- UnknownCompound bNodeType  -}
   return $ BNode _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29
+
 getBNodeLink :: BHeader -> Get BNodeLink
 getBNodeLink h = do
   _1 <- getPointer h {- struct bNodeLink * -}
@@ -3658,6 +3887,7 @@ getBNodeLink h = do
   _5 <- getPointer h {- struct bNodeSocket * -}
   _6 <- getPointer h {- struct bNodeSocket * -}
   return $ BNodeLink _1 _2 _3 _4 _5 _6
+
 getBNodeTree :: BHeader -> Get BNodeTree
 getBNodeTree h = do
   _1 <- getID h {- struct ID -}
@@ -3674,6 +3904,7 @@ getBNodeTree h = do
   _12 <- getPointer h {- void * (*xxx)() -}
   _13 <- getPointer h {- int (*xxx)() -}
   return $ BNodeTree _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getNodeImageAnim :: BHeader -> Get NodeImageAnim
 getNodeImageAnim h = do
   _1 <- getInt h {- int -}
@@ -3683,6 +3914,7 @@ getNodeImageAnim h = do
   _5 <- get {- char -}
   _6 <- getShort h {- short -}
   return $ NodeImageAnim _1 _2 _3 _4 _5 _6
+
 getNodeBlurData :: BHeader -> Get NodeBlurData
 getNodeBlurData h = do
   _1 <- getShort h {- short -}
@@ -3697,12 +3929,14 @@ getNodeBlurData h = do
   _10 <- get {- char -}
   _11 <- getInt h {- int -}
   return $ NodeBlurData _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11
+
 getNodeHueSat :: BHeader -> Get NodeHueSat
 getNodeHueSat h = do
   _1 <- getFloat h {- float -}
   _2 <- getFloat h {- float -}
   _3 <- getFloat h {- float -}
   return $ NodeHueSat _1 _2 _3
+
 getNodeImageFile :: BHeader -> Get NodeImageFile
 getNodeImageFile h = do
   _1 <- getByteString 256 {- char[256] -}
@@ -3713,6 +3947,7 @@ getNodeImageFile h = do
   _6 <- getInt h {- int -}
   _7 <- getInt h {- int -}
   return $ NodeImageFile _1 _2 _3 _4 _5 _6 _7
+
 getNodeChroma :: BHeader -> Get NodeChroma
 getNodeChroma h = do
   _1 <- getFloat h {- float -}
@@ -3723,15 +3958,18 @@ getNodeChroma h = do
   _6 <- getFloat h {- float -}
   _7 <- replicateM 4 (getFloat h {- float -}) {- float[4] -}
   return $ NodeChroma _1 _2 _3 _4 _5 _6 _7
+
 getNodeGeometry :: BHeader -> Get NodeGeometry
 getNodeGeometry h = do
   _1 <- getByteString 32 {- char[32] -}
   _2 <- getByteString 32 {- char[32] -}
   return $ NodeGeometry _1 _2
+
 getNodeVertexCol :: BHeader -> Get NodeVertexCol
 getNodeVertexCol h = do
   _1 <- getByteString 32 {- char[32] -}
   return $ NodeVertexCol _1
+
 getNodeDefocus :: BHeader -> Get NodeDefocus
 getNodeDefocus h = do
   _1 <- get {- char -}
@@ -3745,6 +3983,7 @@ getNodeDefocus h = do
   _9 <- getFloat h {- float -}
   _10 <- getFloat h {- float -}
   return $ NodeDefocus _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getCurveMapPoint :: BHeader -> Get CurveMapPoint
 getCurveMapPoint h = do
   _1 <- getFloat h {- float -}
@@ -3752,6 +3991,7 @@ getCurveMapPoint h = do
   _3 <- getShort h {- short -}
   _4 <- getShort h {- short -}
   return $ CurveMapPoint _1 _2 _3 _4
+
 getCurveMap :: BHeader -> Get CurveMap
 getCurveMap h = do
   _1 <- getShort h {- short -}
@@ -3765,6 +4005,7 @@ getCurveMap h = do
   _9 <- getPointer h {- struct CurveMapPoint * -}
   _10 <- getPointer h {- struct CurveMapPoint * -}
   return $ CurveMap _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
+
 getCurveMapping :: BHeader -> Get CurveMapping
 getCurveMapping h = do
   _1 <- getInt h {- int -}
@@ -3777,6 +4018,7 @@ getCurveMapping h = do
   _8 <- replicateM 3 (getFloat h {- float -}) {- float[3] -}
   _9 <- getFloat h {- float -}
   return $ CurveMapping _1 _2 _3 _4 _5 _6 _7 _8 _9
+
 getBrushClone :: BHeader -> Get BrushClone
 getBrushClone h = do
   _1 <- getPointer h {- struct Image * -}
@@ -3784,6 +4026,7 @@ getBrushClone h = do
   _3 <- getFloat h {- float -}
   _4 <- getFloat h {- float -}
   return $ BrushClone _1 _2 _3 _4
+
 getBrush :: BHeader -> Get Brush
 getBrush h = do
   _1 <- getID h {- struct ID -}
@@ -3800,6 +4043,7 @@ getBrush h = do
   _12 <- replicateM 10 (getPointer h {- struct MTex * -}) {- struct MTex *[10] -}
   _13 <- getBrushClone h {- struct BrushClone -}
   return $ Brush _1 _2 _3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13
+
 getCustomDataLayer :: BHeader -> Get CustomDataLayer
 getCustomDataLayer h = do
   _1 <- getInt h {- int -}
@@ -3811,6 +4055,7 @@ getCustomDataLayer h = do
   _7 <- getByteString 32 {- char[32] -}
   _8 <- getPointer h {- void * * -}
   return $ CustomDataLayer _1 _2 _3 _4 _5 _6 _7 _8
+
 getCustomData :: BHeader -> Get CustomData
 getCustomData h = do
   _1 <- getPointer h {- struct CustomDataLayer * -}
@@ -3819,12 +4064,14 @@ getCustomData h = do
   _4 <- getInt h {- int -}
   _5 <- getInt h {- int -}
   return $ CustomData _1 _2 _3 _4 _5
+
 readBlend :: FilePath -> IO [(Integer,Block)]
 readBlend f = do
   s <- LB.readFile f
   return $ runGet (do h <- getBHeader
                       bs <- parseBlocks h
                       return bs) s
+
 parseBlocks :: BHeader -> Get [(Integer,Block)]
 parseBlocks h = do
   code <- getByteString 4
@@ -3838,6 +4085,7 @@ parseBlocks h = do
     _ -> do b <- parseBlock h size addr idx count
             bs <- parseBlocks h
             return (b : bs)
+
 parseBlock :: BHeader -> Int -> Integer -> Int -> Int -> Get (Integer,Block)
 parseBlock h size addr idx count =
   if structSize h (sdna !! idx) * count /= size

@@ -100,7 +100,7 @@ showBlockParser sdna =
   "  s <- LB.readFile f\n" ++
   "  return $ runGet (do h <- getBHeader\n" ++
   "                      bs <- parseBlocks h\n" ++
-  "                      return bs) s\n" ++
+  "                      return bs) s\n\n" ++
   "parseBlocks :: BHeader -> Get [(Integer,Block)]\n" ++
   "parseBlocks h = do\n" ++
   "  code <- getByteString 4\n" ++
@@ -113,7 +113,7 @@ showBlockParser sdna =
   "    \"ENDB\" -> return []\n" ++
   "    _ -> do b <- parseBlock h size addr idx count\n" ++
   "            bs <- parseBlocks h\n" ++
-  "            return (b : bs)\n" ++
+  "            return (b : bs)\n\n" ++
   "parseBlock :: BHeader -> Int -> Integer -> Int -> Int -> Get (Integer,Block)\n" ++
   "parseBlock h size addr idx count =\n" ++
   "  if structSize h (sdna !! idx) * count /= size\n" ++
@@ -159,7 +159,8 @@ showStructParser (n, fs) =
   "get" ++ n' ++ " :: BHeader -> Get " ++ n' ++ "\n" ++
   "get" ++ n' ++ " h = do\n  " ++
   concat (intersperse "\n  "  f') ++
-  "\n  return $ " ++ n'  ++ concatMap (\i -> " _" ++ show i) [1..length fs]
+  "\n  return $ " ++ n'  ++ concatMap (\i -> " _" ++ show i) [1..length fs] ++
+  "\n"
   where n' = toUpper (BC.head n) : tail (BC.unpack n)
         f =  map (showTypeParser . snd) fs
         f' = zipWith (\a b -> "_" ++ show a ++ " <- " ++ b) [(1::Integer)..] f
