@@ -10,23 +10,33 @@ author:              Vo Minh Thu
 maintainer:          noteed@gmail.com
 build-type:          Simple
 
+flag b245
+  description: Builds Blender 2.45 specific modules (this takes time).
+  default:     False
+
 executable hblend
-  main-is:             HBlend.hs
+  main-is:             hblend.hs
   build-depends:       base == 4.*,
                        binary,
                        bytestring,
-                       cmdargs >= 0.6,
+                       cmdargs == 0.6.*,
                        directory,
                        filepath,
                        blaze-html == 0.3.*
   ghc-options:         -Wall
+  if flag(b245)
+    cpp-options: -DHAVE_B245
 
 library
   build-depends:       base, binary, bytestring
   ghc-options:         -Wall
   exposed-modules:     Data.Blend,
-                       Data.Blend.B245,
                        Data.Blend.Html,
                        Data.Blend.Parser,
                        Data.Blend.Types
+  if flag(b245)
+    exposed-modules:   Data.Blend.B245,
+                       Data.Blend.B245.Parser,
+                       Data.Blend.B245.SDNA,
+                       Data.Blend.B245.Types
 
