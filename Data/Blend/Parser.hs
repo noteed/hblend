@@ -105,6 +105,9 @@ flattenField ss (t,n) = (n',t''')
                "short" ->  Short
                "ushort" -> UShort
                "int" -> Int
+               "int8_t" -> Int8
+               "int64_t" -> Int64
+               "uint64_t" -> UInt64
                "long" -> Long
                "ulong" -> ULong
                "float" -> Float
@@ -124,7 +127,9 @@ flattenField ss (t,n) = (n',t''')
                 (1, [l]) -> Arr l (Ref t')
                 (0, [l,m]) -> Arr m (Arr l t')
                 (1, [l,m]) -> Arr m (Arr l (Ref t'))
-                _ -> error "Unexpected (type,name)"
+                (0, [l,m,n]) -> Arr n (Arr m (Arr l t'))
+                _ -> error $ "Unexpected (type, name): "
+                  ++ BC.unpack t ++ ", " ++ BC.unpack n
         -- the name can be (*xxx)()
         (n', t''') = if not (BC.null $ name n) && BC.head (name n) == '('
           then (BC.takeWhile (/= ')') (BC.drop 2 n) , FunPtr t'')
@@ -212,6 +217,15 @@ getUShort h = fromIntegral <$> getWord16 h
 
 getInt :: BHeader -> Get Int32
 getInt h = fromIntegral <$> getWord32 h
+
+getInt8 :: BHeader -> Get Int8
+getInt8 _ = fromIntegral <$> getWord8
+
+getInt64 :: BHeader -> Get Int64
+getInt64 h = fromIntegral <$> getWord64 h
+
+getUInt64 :: BHeader -> Get Word64
+getUInt64 h = fromIntegral <$> getWord64 h
 
 getLong :: BHeader -> Get Int64
 getLong h = fromIntegral <$> getWord64 h

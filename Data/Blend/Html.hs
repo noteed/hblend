@@ -6,8 +6,8 @@ import qualified Data.ByteString.Char8 as BC
 
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
-import Text.Blaze (Html, (!))
-import Text.Blaze.Renderer.Utf8 (renderHtml)
+import Text.Blaze.Html5 (Html, (!))
+import Text.Blaze.Html.Renderer.Utf8 (renderHtml)
 
 import Data.Blend.Types
 
@@ -20,7 +20,7 @@ dumpHtml blend = do
     H.title "Blender SDNA structures"
     mapM_ (uncurry structAsHtml) $ zip [(0::Integer)..] sdna
 
-structAsHtml :: (Integral i) => i -> Struct -> Html
+structAsHtml :: (Integral i, Show i) => i -> Struct -> Html
 structAsHtml i (n, fs) =
   H.div ! A.class_ "sdna-structure" $ do
     H.span ! A.class_ "sdna-index" $ H.string (show i)

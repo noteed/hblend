@@ -3,8 +3,8 @@
 
 module Main where
 
-import Paths_hblend (version)
-import Data.Version (showVersion)
+-- TODO import Paths_hblend (version)
+import Data.Version (showVersion, Version(..))
 import System.Console.CmdArgs.Implicit
 import System.Directory (createDirectory)
 import System.FilePath ((</>))
@@ -28,6 +28,11 @@ import Data.Blend.Html (dumpHtml)
   , showBlockParser
   )
 -}
+
+-- TODO Use Paths_hblend above ?
+version :: Version
+version = Version [0, 0, 0] []
+
 versionString :: String
 versionString =
   "hblend " ++ showVersion version ++ " Copyright (c) 2009-2011 Vo Minh Thu."

@@ -87,6 +87,8 @@ showField (n, t) = BC.unpack n ++ " :: " ++ show t ++ "\n"
 data Type = Char | UChar
           | Short | UShort
           | Int
+          | Int8
+          | Int64 | UInt64
           | Long | ULong
           | Float | Double
           | Ref Type
@@ -104,6 +106,9 @@ instance Show Type where
       Short -> "short"
       UShort -> "ushort"
       Int -> "int"
+      Int8 -> "int8_t"
+      Int64 -> "int64_t"
+      UInt64 -> "uint64_t"
       Long -> "long"
       ULong -> "ulong"
       Float -> "float"
@@ -123,6 +128,9 @@ typeSize h t =
     Short -> 2
     UShort -> 2
     Int -> 4
+    Int8 -> 1
+    Int64 -> 8
+    UInt64 -> 8
     Long -> 8
     ULong -> 8
     Float -> 4
